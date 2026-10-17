@@ -10,6 +10,7 @@ from backend.app.services.document_access import (
     get_user_documents,
 )
 from backend.app.services.document_upload import store_document_pdf
+from backend.app.services.document_processing import process_document
 
 router = APIRouter(prefix="/documents", tags=["Documents"])
 
@@ -82,4 +83,14 @@ def read_document(
     return get_owned_document(
         document_id=document_id,
         user_id=user_id,
+    )
+
+@router.post("/{document_id}/process")
+def process_document_endpoint(
+    document_id: UUID,
+    current_user: dict = Depends(get_current_user),
+):
+    return process_document(
+        document_id=document_id,
+        user_id=UUID(current_user["sub"]),
     )

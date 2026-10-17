@@ -1,0 +1,209 @@
+
+from unittest.mock import MagicMock, patch
+from uuid import uuid4
+
+import pytest
+from fastapi import HTTPException
+
+from backend.app.services.document_processing import process_document
+
+
+@patch("backend.app.services.document_processing.save_document_chunks")
+@patch("backend.app.services.document_processing.chunk_pages")
+@patch("backend.app.services.document_processing.extract_pdf_text")
+@patch("backend.app.services.document_processing.get_supabase_client")
+@patch("backend.app.services.document_processing.get_owned_document")
+def test_process_document_success(
+    mock_get_document,
+    mock_get_client,
+    mock_extract,
+    mock_chunk_pages,
+    mock_save_chunks,
+):
+    document_id = uuid4()
+    user_id = uuid4()
+    storage_path = f"{user_id}/test-document.pdf"
+
+    mock_get_document.return_value = {
+        "id": str(document_id),
+        "user_id": str(user_id),
+        "storage_path": storage_path,
+    }
+
+    client = MagicMock()
+    mock_get_client.return_value = client
+
+    client.storage.from_.return_value.download.return_value = b"%PDF-test"
+
+    pages = [
+        {"page_number": 1, "text": "Halaman pertama"},
+        {"page_number": 2, "text": "Halaman kedua"},
+    ]
+
+    mock_extract.return_value = {
+        "page_count": 2,
+        "pages": pages,
+    }
+
+    chunks = [
+        {
+            "chunk_index": 0,
+            "page_number": 1,
+            "content": "Halaman pertama",
+        },
+        {
+            "chunk_index": 1,
+            "page_number": 2,
+            "content": "Halaman kedua",
+        },
+    ]
+
+    mock_chunk_pages.return_value = chunks
+    mock_save_chunks.return_value = 2
+
+    client.table.return_value.update.return_value.eq.return_value.eq.return_value.execute.return_value.data = [
+        {"id": str(document_id)}
+    ]
+
+    result = process_document(document_id, user_id)
+
+    assert result["document_id"] == str(document_id)
+    assert result["page_count"] == 2
+    assert result["chunk_count"] == 2
+    assert result["status"] == "ready"
+    assert result["pages"] == pages
+
+    client.storage.from_.assert_called_once_with("documents")
+    client.storage.from_.return_value.download.assert_called_once_with(storage_path)
+
+    mock_extract.assert_called_once_with(b"%PDF-test")
+    mock_chunk_pages.assert_called_once_with(pages)
+    mock_save_chunks.assert_called_once_with(
+        document_id=document_id,
+        user_id=user_id,
+        chunks=chunks,
+    )
+
+    client.table.assert_called_once_with("documents")
+    client.table.return_value.update.assert_called_once_with(
+        {
+            "page_count": 2,
+            "status": "ready",
+            "error_message": None,
+        }
+    )
+
+
+@patch("backend.app.services.document_processing.get_supabase_client")
+@patch("backend.app.services.document_processing.get_owned_document")
+def test_process_document_not_found(
+    mock_get_document,
+    mock_get_client,
+):
+    document_id = uuid4()
+    user_id = uuid4()
+
+    mock_get_document.side_effect = HTTPException(
+        status_code=404,
+        detail="Document not found",
+    )
+
+    with pytest.raises(HTTPException) as exc_info:
+        process_document(document_id, user_id)
+
+    assert exc_info.value.status_code == 404
+    mock_get_client.assert_not_called()
+
+
+@patch("backend.app.services.document_processing.save_document_chunks")
+@patch("backend.app.services.document_processing.extract_pdf_text")
+@patch("backend.app.services.document_processing.get_supabase_client")
+@patch("backend.app.services.document_processing.get_owned_document")
+def test_process_document_extraction_failure(
+    mock_get_document,
+    mock_get_client,
+    mock_extract,
+    mock_save_chunks,
+):
+    document_id = uuid4()
+    user_id = uuid4()
+
+    mock_get_document.return_value = {
+        "id": str(document_id),
+        "user_id": str(user_id),
+        "storage_path": f"{user_id}/test-document.pdf",
+    }
+
+    client = MagicMock()
+    mock_get_client.return_value = client
+
+    client.storage.from_.return_value.download.return_value = b"%PDF-test"
+    mock_extract.side_effect = ValueError("Invalid PDF")
+
+    with pytest.raises(HTTPException) as exc_info:
+        process_document(document_id, user_id)
+
+    assert exc_info.value.status_code == 503
+    mock_save_chunks.assert_not_called()
+
+    client.table.return_value.update.assert_called_with(
+        {
+            "status": "failed",
+            "error_message": "Document processing failed",
+        }
+    )
+
+
+@patch("backend.app.services.document_processing.save_document_chunks")
+@patch("backend.app.services.document_processing.chunk_pages")
+@patch("backend.app.services.document_processing.extract_pdf_text")
+@patch("backend.app.services.document_processing.get_supabase_client")
+@patch("backend.app.services.document_processing.get_owned_document")
+def test_process_document_chunk_save_failure(
+    mock_get_document,
+    mock_get_client,
+    mock_extract,
+    mock_chunk_pages,
+    mock_save_chunks,
+):
+    document_id = uuid4()
+    user_id = uuid4()
+
+    mock_get_document.return_value = {
+        "id": str(document_id),
+        "user_id": str(user_id),
+        "storage_path": f"{user_id}/test-document.pdf",
+    }
+
+    client = MagicMock()
+    mock_get_client.return_value = client
+    client.storage.from_.return_value.download.return_value = b"%PDF-test"
+
+    mock_extract.return_value = {
+        "page_count": 1,
+        "pages": [{"page_number": 1, "text": "Teks pengujian"}],
+    }
+    mock_chunk_pages.return_value = [
+        {
+            "chunk_index": 0,
+            "page_number": 1,
+            "content": "Teks pengujian",
+        }
+    ]
+    mock_save_chunks.side_effect = HTTPException(
+        status_code=503,
+        detail="Unable to save document chunks",
+    )
+
+    with pytest.raises(HTTPException) as exc_info:
+        process_document(document_id, user_id)
+
+    assert exc_info.value.status_code == 503
+    assert exc_info.value.detail == "Unable to process document"
+
+    client.table.return_value.update.assert_called_once_with(
+        {
+            "status": "failed",
+            "error_message": "Document processing failed",
+        }
+    )
