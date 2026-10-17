@@ -3,3 +3,6 @@ pytest
 httpx
 supabase
 python-dotenv
+pydantic-settings
+PyJWT[crypto]
+python-multipart
