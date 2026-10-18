@@ -41,3 +41,22 @@ def generate_embeddings(texts: list[str]) -> list[list[float]]:
         raise ValueError("Unexpected embedding dimensions")
 
     return vectors.tolist()
+
+
+def generate_query_embedding(query: str) -> list[float]:
+    if not isinstance(query, str) or not query.strip():
+        raise ValueError("Query must contain non-empty text")
+
+    model = _load_model()
+
+    vector = model.encode(
+        [f"query: {query.strip()}"],
+        normalize_embeddings=True,
+        convert_to_numpy=True,
+        show_progress_bar=False,
+    )
+
+    if vector.shape != (1, 768):
+        raise ValueError("Unexpected query embedding dimensions")
+
+    return vector[0].tolist()
