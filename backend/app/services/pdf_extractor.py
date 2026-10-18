@@ -5,7 +5,7 @@ from pypdf import PdfReader
 
 
 def extract_pdf_text(file_bytes: bytes) -> dict:
-    """Extract text from a PDF and preserve its page numbers."""
+    """Extract PDF text while preserving page numbers."""
     try:
         reader = PdfReader(BytesIO(file_bytes))
 
@@ -21,6 +21,11 @@ def extract_pdf_text(file_bytes: bytes) -> dict:
                 "page_number": page_number,
                 "text": text.strip(),
             })
+
+        if not pages or not any(page["text"] for page in pages):
+            raise ValueError(
+                "PDF contains no extractable text; scanned PDFs are not supported"
+            )
 
         return {
             "page_count": len(pages),

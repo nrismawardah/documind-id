@@ -9,6 +9,7 @@ from backend.app.services.document_access import get_owned_document
 from backend.app.services.document_chunks import save_document_chunks
 from backend.app.services.pdf_extractor import extract_pdf_text
 from backend.app.services.text_chunker import chunk_pages
+from backend.app.services.embedding_service import generate_embeddings
 
 logger = logging.getLogger(__name__)
 
@@ -35,13 +36,19 @@ def process_document(document_id: UUID, user_id: UUID) -> dict:
         # 3. Split extracted text into overlapping chunks.
         chunks = chunk_pages(extracted["pages"])
 
+        embeddings = generate_embeddings(
+            [chunk["content"] for chunk in chunks]
+        )
+
+        for chunk, embedding in zip(chunks, embeddings, strict=True):
+            chunk["embedding"] = embedding
+
         # 4. Atomically replace chunks in the database.
         saved_count = save_document_chunks(
             document_id=document_id,
             user_id=user_id,
             chunks=chunks,
         )
-
         # 5. Mark the document ready only after chunks are saved.
         response = (
             client.table("documents")

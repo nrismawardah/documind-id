@@ -21,11 +21,13 @@ def test_save_document_chunks_success(mock_get_client):
             "chunk_index": 0,
             "page_number": 1,
             "content": "Teks chunk pertama",
+            "embedding": [0.1] * 768,
         },
         {
             "chunk_index": 1,
             "page_number": 2,
             "content": "Teks chunk kedua",
+            "embedding": [0.2] * 768,
         },
     ]
 
@@ -91,6 +93,7 @@ def test_save_document_chunks_database_failure(mock_get_client):
                     "chunk_index": 0,
                     "page_number": 1,
                     "content": "Contoh teks",
+                    "embedding": [0.1] * 768,
                 }
             ],
         )

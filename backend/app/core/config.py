@@ -11,6 +11,7 @@ BACKEND_DIR = Path(__file__).resolve().parents[2]
 class Settings(BaseSettings):
     app_name: str = "DocuMind ID API"
     app_env: str = "development"
+    embedding_model_name: str = "intfloat/multilingual-e5-base"
 
     supabase_url: str
     supabase_service_role_key: str

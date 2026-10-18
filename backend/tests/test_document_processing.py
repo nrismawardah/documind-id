@@ -7,7 +7,7 @@ from fastapi import HTTPException
 
 from backend.app.services.document_processing import process_document
 
-
+@patch("backend.app.services.document_processing.generate_embeddings")
 @patch("backend.app.services.document_processing.save_document_chunks")
 @patch("backend.app.services.document_processing.chunk_pages")
 @patch("backend.app.services.document_processing.extract_pdf_text")
@@ -19,6 +19,7 @@ def test_process_document_success(
     mock_extract,
     mock_chunk_pages,
     mock_save_chunks,
+    mock_generate_embeddings,
 ):
     document_id = uuid4()
     user_id = uuid4()
@@ -65,6 +66,11 @@ def test_process_document_success(
         {"id": str(document_id)}
     ]
 
+    mock_generate_embeddings.return_value = [
+    [0.1] * 768,
+    [0.2] * 768,
+    ]
+
     result = process_document(document_id, user_id)
 
     assert result["document_id"] == str(document_id)
@@ -78,6 +84,9 @@ def test_process_document_success(
 
     mock_extract.assert_called_once_with(b"%PDF-test")
     mock_chunk_pages.assert_called_once_with(pages)
+    mock_generate_embeddings.assert_called_once_with(
+    ["Halaman pertama", "Halaman kedua"]
+    )
     mock_save_chunks.assert_called_once_with(
         document_id=document_id,
         user_id=user_id,
@@ -153,7 +162,7 @@ def test_process_document_extraction_failure(
         }
     )
 
-
+@patch("backend.app.services.document_processing.generate_embeddings")
 @patch("backend.app.services.document_processing.save_document_chunks")
 @patch("backend.app.services.document_processing.chunk_pages")
 @patch("backend.app.services.document_processing.extract_pdf_text")
@@ -165,6 +174,7 @@ def test_process_document_chunk_save_failure(
     mock_extract,
     mock_chunk_pages,
     mock_save_chunks,
+    mock_generate_embeddings
 ):
     document_id = uuid4()
     user_id = uuid4()
@@ -194,6 +204,7 @@ def test_process_document_chunk_save_failure(
         status_code=503,
         detail="Unable to save document chunks",
     )
+    mock_generate_embeddings.return_value = [[0.1] * 768]
 
     with pytest.raises(HTTPException) as exc_info:
         process_document(document_id, user_id)
