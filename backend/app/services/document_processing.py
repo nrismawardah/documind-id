@@ -56,6 +56,12 @@ def process_document(document_id: UUID, user_id: UUID) -> dict:
         extracted = extract_pdf_text(file_response)
         chunks = chunk_pages(extracted["pages"])
 
+        if not chunks:
+            raise HTTPException(
+                status_code=422,
+                detail="No text chunks were extracted from this PDF",
+                )
+
         embeddings = generate_embeddings(
             [chunk["content"] for chunk in chunks]
         )
@@ -68,6 +74,12 @@ def process_document(document_id: UUID, user_id: UUID) -> dict:
             user_id=user_id,
             chunks=chunks,
         )
+
+        if saved_count <= 0:
+            raise HTTPException(
+                status_code=422,
+                detail="No document chunks were saved",
+                )
 
         # Only mark the document ready if it is still being processed.
         response = (
@@ -100,7 +112,6 @@ def process_document(document_id: UUID, user_id: UUID) -> dict:
     except HTTPException as exc:
         if exc.status_code < 500:
             raise
-
         logger.exception("Document processing failed")
 
     except Exception:

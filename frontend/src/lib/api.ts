@@ -31,6 +31,20 @@ export interface SearchResponse {
   results: SearchResult[];
 }
 
+export interface AskSource {
+  document_id: string;
+  filename: string;
+  page_number: number;
+  content: string;
+  similarity: number;
+}
+
+export interface AskResponse {
+  query: string;
+  answer: string;
+  sources: AskSource[];
+}
+
 async function getAccessToken(): Promise<string> {
   const { data, error } = await supabase.auth.getSession();
 
@@ -114,6 +128,22 @@ export async function searchDocuments(
   documentId?: string,
 ): Promise<SearchResponse> {
   return apiRequest<SearchResponse>("/search", {
+    method: "POST",
+    body: JSON.stringify({
+      query,
+      match_count: 5,
+      match_threshold: 0,
+      ...(documentId ? { document_id: documentId } : {}),
+    }),
+  });
+}
+
+
+export async function askDocument(
+  query: string,
+  documentId?: string,
+): Promise<AskResponse> {
+  return apiRequest<AskResponse>("/search/ask", {
     method: "POST",
     body: JSON.stringify({
       query,

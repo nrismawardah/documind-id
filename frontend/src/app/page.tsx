@@ -11,6 +11,8 @@ import {
 } from "react";
 import { supabase } from "@/lib/supabase";
 import {
+  askDocument,
+  AskResponse,
   deleteDocument,
   DocumentItem,
   listDocuments,
@@ -144,6 +146,8 @@ export default function Home() {
   const [searchResponse, setSearchResponse] = useState<SearchResponse | null>(
     null,
   );
+  const [searchMode, setSearchMode] = useState<"search" | "ask">("search");
+  const [askResponse, setAskResponse] = useState<AskResponse | null>(null);
   const [logoutLoading, setLogoutLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -329,7 +333,9 @@ export default function Home() {
 
   async function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
     const query = searchQuery.trim();
+
     if (!query) {
       setSearchError("Masukkan pertanyaan atau kata kunci terlebih dahulu.");
       return;
@@ -338,12 +344,19 @@ export default function Home() {
     setSearchLoading(true);
     setSearchError("");
     setSearchResponse(null);
+    setAskResponse(null);
+
     try {
-      const result = await searchDocuments(
-        query,
-        selectedDocument === "all" ? undefined : selectedDocument,
-      );
-      setSearchResponse(result);
+      const documentId =
+        selectedDocument === "all" ? undefined : selectedDocument;
+
+      if (searchMode === "ask") {
+        const result = await askDocument(query, documentId);
+        setAskResponse(result);
+      } else {
+        const result = await searchDocuments(query, documentId);
+        setSearchResponse(result);
+      }
     } catch (error) {
       setSearchError(
         error instanceof Error ? error.message : "Pencarian gagal.",
@@ -795,11 +808,51 @@ export default function Home() {
           </div>
 
           <form onSubmit={handleSearch} className="mt-6">
+            <div className="mb-5 grid grid-cols-2 gap-2 rounded-2xl bg-[#1F2A1F]/5 p-1.5">
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchMode("search");
+                  setSearchResponse(null);
+                  setAskResponse(null);
+                  setSearchError("");
+                }}
+                className={`flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-medium transition ${
+                  searchMode === "search"
+                    ? "bg-white text-[#004B08] shadow-sm"
+                    : "text-[#1F2A1F]/60 hover:text-[#1F2A1F]"
+                }`}
+              >
+                <Icon name="search" className="h-4 w-4" />
+                Semantic Search
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchMode("ask");
+                  setSearchResponse(null);
+                  setAskResponse(null);
+                  setSearchError("");
+                }}
+                className={`flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-medium transition ${
+                  searchMode === "ask"
+                    ? "bg-[#004B08] text-white shadow-sm"
+                    : "text-[#1F2A1F]/60 hover:text-[#1F2A1F]"
+                }`}
+              >
+                <Icon name="spark" className="h-4 w-4" />
+                Ask AI
+              </button>
+            </div>
+
             <label
               htmlFor="search-query"
               className="mb-2 block text-sm font-medium"
             >
-              Pertanyaan atau kata kunci
+              {searchMode === "ask"
+                ? "Tanyakan sesuatu tentang dokumen"
+                : "Pertanyaan atau kata kunci"}
             </label>
             <textarea
               id="search-query"
@@ -836,8 +889,17 @@ export default function Home() {
                 disabled={searchLoading || readyDocuments.length === 0}
                 className="mt-auto inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#004B08] px-6 text-sm font-semibold text-white transition hover:bg-[#003906] disabled:cursor-not-allowed disabled:opacity-50"
               >
-                <Icon name="search" className="h-4 w-4" />
-                {searchLoading ? "Mencari..." : "Cari kutipan"}
+                <Icon
+                  name={searchMode === "ask" ? "spark" : "search"}
+                  className="h-4 w-4"
+                />
+                {searchLoading
+                  ? searchMode === "ask"
+                    ? "Menyiapkan jawaban..."
+                    : "Mencari..."
+                  : searchMode === "ask"
+                    ? "Tanyakan ke AI"
+                    : "Cari kutipan"}
               </button>
             </div>
             {readyDocuments.length === 0 && (
@@ -847,6 +909,63 @@ export default function Home() {
               </p>
             )}
           </form>
+
+          {askResponse && (
+            <div className="mt-6 space-y-5">
+              <div className="rounded-3xl border border-[#004B08]/15 bg-white p-5 sm:p-7">
+                <div className="flex items-center gap-2 text-sm font-semibold text-[#004B08]">
+                  <Icon name="spark" className="h-5 w-5" />
+                  Jawaban AI
+                </div>
+
+                <div className="mt-4 whitespace-pre-wrap text-sm leading-7 text-[#1F2A1F]/85">
+                  {askResponse.answer}
+                </div>
+
+                <p className="mt-5 border-t border-[#1F2A1F]/10 pt-4 text-xs leading-5 text-[#1F2A1F]/55">
+                  Jawaban dibuat berdasarkan bagian dokumen yang ditemukan.
+                  Periksa sumber berikut untuk memverifikasi informasi.
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-[#1F2A1F]/10 bg-[#F3EFDF]/60 p-5 sm:p-7">
+                <div className="flex items-center gap-2">
+                  <Icon name="book" className="h-5 w-5 text-[#004B08]" />
+                  <h3 className="font-semibold text-[#1F2A1F]">
+                    Sumber jawaban ({askResponse.sources.length})
+                  </h3>
+                </div>
+
+                {askResponse.sources.length === 0 ? (
+                  <p className="mt-4 text-sm leading-6 text-[#1F2A1F]/60">
+                    Tidak ada sumber yang dikembalikan untuk jawaban ini.
+                  </p>
+                ) : (
+                  <div className="mt-4 space-y-3">
+                    {askResponse.sources.map((source, index) => (
+                      <article
+                        key={`${source.document_id}-${source.page_number}-${index}`}
+                        className="rounded-2xl border border-[#1F2A1F]/10 bg-white p-4"
+                      >
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <span className="text-sm font-semibold text-[#1F2A1F]">
+                            {source.filename}
+                          </span>
+                          <span className="rounded-full bg-[#004B08]/8 px-3 py-1 text-xs font-medium text-[#004B08]">
+                            Halaman {source.page_number}
+                          </span>
+                        </div>
+
+                        <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-[#1F2A1F]/70">
+                          {source.content}
+                        </p>
+                      </article>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
 
           {searchError && (
             <p
