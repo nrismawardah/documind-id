@@ -1,9 +1,13 @@
 
+import logging
 from uuid import UUID
 
 from fastapi import HTTPException, status
 
 from backend.app.core.supabase import get_supabase_client
+
+
+logger = logging.getLogger(__name__)
 
 
 def get_owned_document(document_id: UUID, user_id: UUID) -> dict:
@@ -19,9 +23,10 @@ def get_owned_document(document_id: UUID, user_id: UUID) -> dict:
             .execute()
         )
 
-        document = response.data
+        document = response.data if response is not None else None
 
     except Exception:
+        logger.exception("Failed to verify document access")
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="Unable to verify document access",

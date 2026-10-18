@@ -7,6 +7,22 @@ from fastapi import HTTPException
 
 from backend.app.services.document_processing import process_document
 
+
+def configure_document_updates(client):
+    """Mock successful conditional status updates."""
+    table = client.table.return_value
+
+    # Initial transition: uploaded/failed -> processing.
+    table.update.return_value.eq.return_value.eq.return_value.in_.return_value.execute.return_value.data = [
+        {"id": "test-document"}
+    ]
+
+    # Final transition: processing -> ready.
+    table.update.return_value.eq.return_value.eq.return_value.eq.return_value.execute.return_value.data = [
+        {"id": "test-document"}
+    ]
+
+
 @patch("backend.app.services.document_processing.generate_embeddings")
 @patch("backend.app.services.document_processing.save_document_chunks")
 @patch("backend.app.services.document_processing.chunk_pages")
@@ -33,6 +49,7 @@ def test_process_document_success(
 
     client = MagicMock()
     mock_get_client.return_value = client
+    configure_document_updates(client)
 
     client.storage.from_.return_value.download.return_value = b"%PDF-test"
 
@@ -40,11 +57,7 @@ def test_process_document_success(
         {"page_number": 1, "text": "Halaman pertama"},
         {"page_number": 2, "text": "Halaman kedua"},
     ]
-
-    mock_extract.return_value = {
-        "page_count": 2,
-        "pages": pages,
-    }
+    mock_extract.return_value = {"page_count": 2, "pages": pages}
 
     chunks = [
         {
@@ -58,17 +71,11 @@ def test_process_document_success(
             "content": "Halaman kedua",
         },
     ]
-
     mock_chunk_pages.return_value = chunks
     mock_save_chunks.return_value = 2
-
-    client.table.return_value.update.return_value.eq.return_value.eq.return_value.execute.return_value.data = [
-        {"id": str(document_id)}
-    ]
-
     mock_generate_embeddings.return_value = [
-    [0.1] * 768,
-    [0.2] * 768,
+        [0.1] * 768,
+        [0.2] * 768,
     ]
 
     result = process_document(document_id, user_id)
@@ -80,12 +87,13 @@ def test_process_document_success(
     assert result["pages"] == pages
 
     client.storage.from_.assert_called_once_with("documents")
-    client.storage.from_.return_value.download.assert_called_once_with(storage_path)
-
+    client.storage.from_.return_value.download.assert_called_once_with(
+        storage_path
+    )
     mock_extract.assert_called_once_with(b"%PDF-test")
     mock_chunk_pages.assert_called_once_with(pages)
     mock_generate_embeddings.assert_called_once_with(
-    ["Halaman pertama", "Halaman kedua"]
+        ["Halaman pertama", "Halaman kedua"]
     )
     mock_save_chunks.assert_called_once_with(
         document_id=document_id,
@@ -93,14 +101,19 @@ def test_process_document_success(
         chunks=chunks,
     )
 
-    client.table.assert_called_once_with("documents")
-    client.table.return_value.update.assert_called_once_with(
-        {
-            "page_count": 2,
-            "status": "ready",
-            "error_message": None,
-        }
-    )
+    assert client.table.call_count == 2
+    client.table.assert_any_call("documents")
+
+    updates = client.table.return_value.update.call_args_list
+    assert updates[0].args[0] == {
+        "status": "processing",
+        "error_message": None,
+    }
+    assert updates[1].args[0] == {
+        "page_count": 2,
+        "status": "ready",
+        "error_message": None,
+    }
 
 
 @patch("backend.app.services.document_processing.get_supabase_client")
@@ -145,6 +158,7 @@ def test_process_document_extraction_failure(
 
     client = MagicMock()
     mock_get_client.return_value = client
+    configure_document_updates(client)
 
     client.storage.from_.return_value.download.return_value = b"%PDF-test"
     mock_extract.side_effect = ValueError("Invalid PDF")
@@ -153,14 +167,19 @@ def test_process_document_extraction_failure(
         process_document(document_id, user_id)
 
     assert exc_info.value.status_code == 503
+    assert exc_info.value.detail == "Unable to process document"
     mock_save_chunks.assert_not_called()
 
-    client.table.return_value.update.assert_called_with(
-        {
-            "status": "failed",
-            "error_message": "Document processing failed",
-        }
-    )
+    updates = client.table.return_value.update.call_args_list
+    assert updates[0].args[0] == {
+        "status": "processing",
+        "error_message": None,
+    }
+    assert updates[1].args[0] == {
+        "status": "failed",
+        "error_message": "Document processing failed",
+    }
+
 
 @patch("backend.app.services.document_processing.generate_embeddings")
 @patch("backend.app.services.document_processing.save_document_chunks")
@@ -174,7 +193,7 @@ def test_process_document_chunk_save_failure(
     mock_extract,
     mock_chunk_pages,
     mock_save_chunks,
-    mock_generate_embeddings
+    mock_generate_embeddings,
 ):
     document_id = uuid4()
     user_id = uuid4()
@@ -187,8 +206,9 @@ def test_process_document_chunk_save_failure(
 
     client = MagicMock()
     mock_get_client.return_value = client
-    client.storage.from_.return_value.download.return_value = b"%PDF-test"
+    configure_document_updates(client)
 
+    client.storage.from_.return_value.download.return_value = b"%PDF-test"
     mock_extract.return_value = {
         "page_count": 1,
         "pages": [{"page_number": 1, "text": "Teks pengujian"}],
@@ -212,9 +232,12 @@ def test_process_document_chunk_save_failure(
     assert exc_info.value.status_code == 503
     assert exc_info.value.detail == "Unable to process document"
 
-    client.table.return_value.update.assert_called_once_with(
-        {
-            "status": "failed",
-            "error_message": "Document processing failed",
-        }
-    )
+    updates = client.table.return_value.update.call_args_list
+    assert updates[0].args[0] == {
+        "status": "processing",
+        "error_message": None,
+    }
+    assert updates[1].args[0] == {
+        "status": "failed",
+        "error_message": "Document processing failed",
+    }

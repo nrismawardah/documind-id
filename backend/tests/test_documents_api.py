@@ -63,3 +63,40 @@ def test_get_document_rejects_invalid_uuid():
         app.dependency_overrides.pop(get_current_user, None)
 
     assert response.status_code == 422
+
+@patch("backend.app.services.document_deletion.delete_document")
+def test_delete_document_returns_success(mock_delete_document):
+    user_id = uuid4()
+    document_id = uuid4()
+
+    mock_delete_document.return_value = {
+        "message": "Document deleted successfully",
+        "document_id": str(document_id),
+    }
+
+    app.dependency_overrides[get_current_user] = lambda: {
+        "sub": str(user_id),
+        "role": "authenticated",
+    }
+
+    try:
+        response = client.delete(f"/documents/{document_id}")
+    finally:
+        app.dependency_overrides.pop(get_current_user, None)
+
+    assert response.status_code == 200
+    assert response.json()["message"] == "Document deleted successfully"
+
+    mock_delete_document.assert_called_once_with(
+        document_id=document_id,
+        user_id=user_id,
+    )
+
+
+def test_delete_document_requires_authentication():
+    response = client.delete(f"/documents/{uuid4()}")
+
+    assert response.status_code == 401
+    assert response.json() == {
+        "detail": "Authentication required"
+    }

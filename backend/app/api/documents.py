@@ -94,3 +94,14 @@ def process_document_endpoint(
         document_id=document_id,
         user_id=UUID(current_user["sub"]),
     )
+@router.delete("/{document_id}")
+def delete_document_endpoint(
+    document_id: UUID,
+    current_user: dict = Depends(get_current_user),
+):
+    from backend.app.services.document_deletion import delete_document
+
+    return delete_document(
+        document_id=document_id,
+        user_id=UUID(current_user["sub"]),
+    )

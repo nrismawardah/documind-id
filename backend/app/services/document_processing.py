@@ -7,9 +7,9 @@ from fastapi import HTTPException
 from backend.app.core.supabase import get_supabase_client
 from backend.app.services.document_access import get_owned_document
 from backend.app.services.document_chunks import save_document_chunks
+from backend.app.services.embedding_service import generate_embeddings
 from backend.app.services.pdf_extractor import extract_pdf_text
 from backend.app.services.text_chunker import chunk_pages
-from backend.app.services.embedding_service import generate_embeddings
 
 logger = logging.getLogger(__name__)
 
@@ -22,18 +22,38 @@ def process_document(document_id: UUID, user_id: UUID) -> dict:
 
     client = get_supabase_client()
 
+    # Claim the document atomically to prevent duplicate processing.
     try:
-        # 1. Download PDF from private Supabase Storage.
-        file_response = (
-            client.storage
-            .from_("documents")
-            .download(document["storage_path"])
+        response = (
+            client.table("documents")
+            .update({
+                "status": "processing",
+                "error_message": None,
+            })
+            .eq("id", str(document_id))
+            .eq("user_id", str(user_id))
+            .in_("status", ["uploaded", "failed"])
+            .execute()
+        )
+    except Exception:
+        logger.exception("Failed to start document processing")
+        raise HTTPException(
+            status_code=503,
+            detail="Unable to start document processing",
+        ) from None
+
+    if not response.data:
+        raise HTTPException(
+            status_code=409,
+            detail="Document is already processing or cannot be processed",
         )
 
-        # 2. Extract text while preserving page numbers.
-        extracted = extract_pdf_text(file_response)
+    try:
+        file_response = client.storage.from_("documents").download(
+            document["storage_path"]
+        )
 
-        # 3. Split extracted text into overlapping chunks.
+        extracted = extract_pdf_text(file_response)
         chunks = chunk_pages(extracted["pages"])
 
         embeddings = generate_embeddings(
@@ -43,13 +63,13 @@ def process_document(document_id: UUID, user_id: UUID) -> dict:
         for chunk, embedding in zip(chunks, embeddings, strict=True):
             chunk["embedding"] = embedding
 
-        # 4. Atomically replace chunks in the database.
         saved_count = save_document_chunks(
             document_id=document_id,
             user_id=user_id,
             chunks=chunks,
         )
-        # 5. Mark the document ready only after chunks are saved.
+
+        # Only mark the document ready if it is still being processed.
         response = (
             client.table("documents")
             .update({
@@ -59,11 +79,15 @@ def process_document(document_id: UUID, user_id: UUID) -> dict:
             })
             .eq("id", str(document_id))
             .eq("user_id", str(user_id))
+            .eq("status", "processing")
             .execute()
         )
 
         if not response.data:
-            raise RuntimeError("Document metadata was not updated")
+            raise HTTPException(
+                status_code=409,
+                detail="Document state changed during processing",
+            )
 
         return {
             "document_id": str(document_id),
@@ -74,66 +98,31 @@ def process_document(document_id: UUID, user_id: UUID) -> dict:
         }
 
     except HTTPException as exc:
-        logger.warning(
-            "Document processing returned HTTP %s for document %s",
-            exc.status_code,
-            document_id,
-        )
-
         if exc.status_code < 500:
             raise
 
-        logger.exception(
-            "Document processing failed for document %s",
-            document_id,
-        )
-
-        try:
-            (
-                client.table("documents")
-                .update({
-                    "status": "failed",
-                    "error_message": "Document processing failed",
-                })
-                .eq("id", str(document_id))
-                .eq("user_id", str(user_id))
-                .execute()
-            )
-        except Exception:
-            logger.exception(
-                "Failed to update document status for %s",
-                document_id,
-            )
-
-        raise HTTPException(
-            status_code=503,
-            detail="Unable to process document",
-        ) from None
+        logger.exception("Document processing failed")
 
     except Exception:
-        logger.exception(
-            "Document processing failed for document %s",
-            document_id,
+        logger.exception("Document processing failed")
+
+    # Do not overwrite a document that another operation is deleting.
+    try:
+        (
+            client.table("documents")
+            .update({
+                "status": "failed",
+                "error_message": "Document processing failed",
+            })
+            .eq("id", str(document_id))
+            .eq("user_id", str(user_id))
+            .eq("status", "processing")
+            .execute()
         )
+    except Exception:
+        logger.exception("Failed to update document failure status")
 
-        try:
-            (
-                client.table("documents")
-                .update({
-                    "status": "failed",
-                    "error_message": "Document processing failed",
-                })
-                .eq("id", str(document_id))
-                .eq("user_id", str(user_id))
-                .execute()
-            )
-        except Exception:
-            logger.exception(
-                "Failed to update document status for %s",
-                document_id,
-            )
-
-        raise HTTPException(
-            status_code=503,
-            detail="Unable to process document",
-        ) from None
+    raise HTTPException(
+        status_code=503,
+        detail="Unable to process document",
+    ) from None
