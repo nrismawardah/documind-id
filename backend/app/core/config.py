@@ -12,6 +12,8 @@ class Settings(BaseSettings):
     app_name: str = "DocuMind ID API"
     app_env: str = "development"
     embedding_model_name: str = "intfloat/multilingual-e5-base"
+    gemini_api_key: str
+    gemini_model_name: str = "gemini-3.8-flash"
 
     supabase_url: str
     supabase_service_role_key: str

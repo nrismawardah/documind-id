@@ -7,3 +7,4 @@ pydantic-settings
 PyJWT[crypto]
 python-multipart
 pypdf
+google-genai
