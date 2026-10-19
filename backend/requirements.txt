@@ -8,3 +8,6 @@ PyJWT[crypto]
 python-multipart
 pypdf
 google-genai
+pytesseract
+PyMuPDF
+Pillow
