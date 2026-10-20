@@ -51,6 +51,7 @@ def search_document_chunks(
             "match_document_chunks",
             {
                 "p_user_id": str(user_id),
+                "p_query": query,
                 "p_query_embedding": embedding,
                 "p_match_count": match_count,
                 "p_match_threshold": match_threshold,
