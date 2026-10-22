@@ -78,9 +78,20 @@ async function apiRequest<T>(path: string, init: RequestInit = {}): Promise<T> {
   headers.set("Authorization", `Bearer ${token}`);
   if (!(init.body instanceof FormData) && init.body !== undefined)
     headers.set("Content-Type", "application/json");
-  const response = await fetch(`${API_URL}${path}`, { ...init, headers });
+
+  let response: Response;
+
+  try {
+    response = await fetch(`${API_URL}${path}`, { ...init, headers });
+  } catch {
+    throw new Error(
+      "Tidak dapat terhubung ke server. Periksa koneksi Anda, lalu coba lagi.",
+    );
+  }
+
   if (response.status === 204) return undefined as T;
   const payload: unknown = await response.json().catch(() => null);
+
   if (!response.ok) {
     const detail =
       typeof payload === "object" &&
