@@ -44,6 +44,7 @@ import {
   Upload,
   X,
 } from "lucide-react";
+import Link from "next/link";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 type View = "dashboard" | "search" | "chat";
@@ -601,15 +602,14 @@ export default function Home() {
       return (
         <main className="auth-screen">
           <div className="auth-glow" />
-          <a className="brand brand-auth" href="/">
+          <Link className="brand brand-auth" href="/">
             <span className="brand-icon">
               <Icon name="logo" />
             </span>
             <span>
               DocuMind <b>ID</b>
             </span>
-          </a>
-
+          </Link>
           <section className="auth-card">
             <h1>Atur kata sandi baru</h1>
             <p className="muted">
@@ -894,14 +894,14 @@ export default function Home() {
     return (
       <main className="landing">
         <nav className="landing-nav">
-          <a className="brand" href="#top">
+          <Link className="brand" href="#top">
             <span className="brand-icon">
               <Icon name="logo" />
             </span>
             <span>
               DocuMind <b>ID</b>
             </span>
-          </a>
+          </Link>
           <div className="landing-nav-actions">
             <button
               className="button button-ghost"
@@ -1086,14 +1086,14 @@ export default function Home() {
           </button>
         </section>
         <footer className="landing-footer">
-          <a className="brand" href="#top">
+          <Link className="brand" href="#top">
             <span className="brand-icon">
               <Icon name="logo" />
             </span>
             <span>
               DocuMind <b>ID</b>
             </span>
-          </a>
+          </Link>
           <span>
             © {new Date().getFullYear()} DocuMind ID · Tanya jawab dokumen PDF
           </span>
