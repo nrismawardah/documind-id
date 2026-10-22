@@ -173,3 +173,42 @@ def test_generate_answer_with_sources_returns_not_found_without_sources():
 
     assert result["answer"] == gemini_service.NOT_FOUND_MARKER
     assert result["source_indices"] == []
+
+def test_generate_answer_with_sources_includes_conversation_history():
+    raw_response = json.dumps(
+        {
+            "answer": "Nama proyek tersebut adalah DocuMind ID.",
+            "source_indices": [0],
+        }
+    )
+
+    history = [
+        {
+            "role": "user",
+            "content": "Apa nama proyek ini?",
+        },
+        {
+            "role": "assistant",
+            "content": "Proyek ini bernama DocuMind ID.",
+        },
+    ]
+
+    with patch(
+        "backend.app.services.gemini_service._generate_content",
+        return_value=raw_response,
+    ) as mock_generate:
+        result = gemini_service.generate_answer_with_sources(
+            question="Bisa jelaskan kembali?",
+            context="[SOURCE 0]\nNama proyek: DocuMind ID.",
+            candidate_count=1,
+            conversation_history=history,
+        )
+
+    prompt = mock_generate.call_args.args[0]
+
+    assert "Apa nama proyek ini?" in prompt
+    assert "Proyek ini bernama DocuMind ID." in prompt
+    assert "Bisa jelaskan kembali?" in prompt
+    assert "Nama proyek: DocuMind ID." in prompt
+    assert "Riwayat percakapan bukan sumber bukti" in prompt
+    assert result["source_indices"] == [0]

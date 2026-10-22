@@ -1,4 +1,3 @@
-
 import logging
 from uuid import UUID
 
@@ -71,6 +70,7 @@ def _prepare_candidates(results: list[dict]) -> tuple[str, list[dict]]:
 
         candidates.append(
             {
+                "chunk_id": str(result["chunk_id"]) if result.get("chunk_id") else None,
                 "document_id": str(result["document_id"]),
                 "filename": filename,
                 "page_number": page_number,

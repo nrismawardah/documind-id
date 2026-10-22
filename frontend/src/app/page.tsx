@@ -1,8 +1,8 @@
-﻿"use client";
+"use client";
 
 import {
-  ChangeEvent,
   FormEvent,
+  ChangeEvent,
   useCallback,
   useEffect,
   useMemo,
@@ -11,284 +11,399 @@ import {
 } from "react";
 import { supabase } from "@/lib/supabase";
 import {
-  askDocument,
   AskResponse,
-  deleteDocument,
+  ChatConversation,
+  ChatMessage,
   DocumentItem,
+  askDocument,
+  createConversation,
+  deleteDocument,
+  getConversation,
+  listConversations,
   listDocuments,
+  postChatMessage,
   processDocument,
-  SearchResponse,
   searchDocuments,
+  SearchResponse,
   uploadDocument,
 } from "@/lib/api";
+import {
+  ArrowRight,
+  BookOpen,
+  Copy,
+  Eye,
+  EyeOff,
+  FileText,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  MessageCircle,
+  Search,
+  Sparkles,
+  Trash2,
+  Upload,
+  X,
+} from "lucide-react";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+type View = "dashboard" | "search" | "chat";
 
-function formatFileSize(bytes: number): string {
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-  return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+function Icon({ name, size = 20 }: { name: string; size?: number }) {
+  const iconProps = { size, strokeWidth: 1.8, "aria-hidden": true as const };
+  const icons: Record<
+    string,
+    React.ComponentType<{
+      size?: number;
+      strokeWidth?: number;
+      "aria-hidden"?: boolean;
+    }>
+  > = {
+    logo: BookOpen,
+    book: BookOpen,
+    dashboard: LayoutDashboard,
+    search: Search,
+    chat: MessageCircle,
+    file: FileText,
+    upload: Upload,
+    trash: Trash2,
+    logout: LogOut,
+    menu: Menu,
+    close: X,
+    copy: Copy,
+    arrow: ArrowRight,
+    spark: Sparkles,
+    eye: Eye,
+    eyeOff: EyeOff,
+  };
+  const LucideIcon = icons[name] ?? FileText;
+  return <LucideIcon {...iconProps} />;
 }
 
-function formatDate(value: string): string {
+function GoogleIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 48 48"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        fill="#4285F4"
+        d="M43.6 24.5c0-1.6-.1-3.2-.4-4.7H24v8.9h11a9.4 9.4 0 0 1-4.1 6.2v5.1h6.7c3.9-3.6 6-9 6-15.5Z"
+      />
+      <path
+        fill="#34A853"
+        d="M24 44c5.5 0 10.1-1.8 13.5-4.9l-6.7-5.1c-1.8 1.2-4.1 2-6.8 2-5.3 0-9.8-3.6-11.4-8.4H5.7v5.3A20 20 0 0 0 24 44Z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M12.6 27.6a12 12 0 0 1 0-7.2v-5.3H5.7a20 20 0 0 0 0 17.8l6.9-5.3Z"
+      />
+      <path
+        fill="#EA4335"
+        d="M24 12c3 0 5.7 1 7.8 3.1l5.9-5.9C34.1 5.8 29.5 4 24 4A20 20 0 0 0 5.7 15.1l6.9 5.3C14.2 15.6 18.7 12 24 12Z"
+      />
+    </svg>
+  );
+}
+function formatBytes(bytes: number) {
+  return bytes < 1024 * 1024
+    ? `${(bytes / 1024).toFixed(1)} KB`
+    : `${(bytes / 1024 / 1024).toFixed(2)} MB`;
+}
+function dateLabel(value: string) {
   return new Date(value).toLocaleDateString("id-ID", {
     day: "numeric",
     month: "short",
     year: "numeric",
   });
 }
-
-function statusLabel(status: DocumentItem["status"]): string {
-  const labels: Record<DocumentItem["status"], string> = {
-    uploaded: "Menunggu proses",
-    processing: "Sedang diproses",
-    ready: "Siap dicari",
-    failed: "Gagal diproses",
-    deleting: "Sedang dihapus",
-  };
-  return labels[status];
-}
-
-function statusClass(status: DocumentItem["status"]): string {
-  if (status === "ready") return "bg-green-100 text-green-800";
-  if (status === "failed") return "bg-red-100 text-red-700";
-  if (status === "processing") return "bg-amber-100 text-amber-800";
-  return "bg-stone-100 text-stone-700";
-}
-
-function Icon({
-  name,
-  className = "h-5 w-5",
-}: {
-  name: "file" | "search" | "upload" | "trash" | "logout" | "spark" | "book";
-  className?: string;
-}) {
-  const shared = {
-    className,
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1.7,
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-    viewBox: "0 0 24 24",
-    "aria-hidden": true as const,
-  };
-
-  switch (name) {
-    case "file":
-      return (
-        <svg {...shared}>
-          <path d="M13 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10z" />
-          <path d="M13 3v7h7M8 14h8M8 18h6" />
-        </svg>
-      );
-    case "search":
-      return (
-        <svg {...shared}>
-          <circle cx="10.8" cy="10.8" r="6.8" />
-          <path d="m16 16 4.5 4.5" />
-        </svg>
-      );
-    case "upload":
-      return (
-        <svg {...shared}>
-          <path d="M12 16V4m-4 4 4-4 4 4" />
-          <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" />
-        </svg>
-      );
-    case "trash":
-      return (
-        <svg {...shared}>
-          <path d="M3 6h18M8 6V4h8v2m-11 0 1 14h12l1-14M10 10v6m4-6v6" />
-        </svg>
-      );
-    case "logout":
-      return (
-        <svg {...shared}>
-          <path d="M10 17l5-5-5-5m5 5H3" />
-          <path d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6" />
-        </svg>
-      );
-    case "spark":
-      return (
-        <svg {...shared}>
-          <path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-2-5.8L4 11l6-2.2z" />
-          <path d="m19 14 1.1 2.1L22 17l-1.9.9L19 20l-1-2.1-2-.9 2-.9z" />
-        </svg>
-      );
-    case "book":
-      return (
-        <svg {...shared}>
-          <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21z" />
-          <path d="M4 5.5v13A2.5 2.5 0 0 1 6.5 16H20M8 7h8M8 10h8" />
-        </svg>
-      );
-  }
+function copyText(value: string) {
+  void navigator.clipboard.writeText(value);
 }
 
 export default function Home() {
   const [sessionReady, setSessionReady] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-  const [isRegister, setIsRegister] = useState(false);
+  const [authView, setAuthView] = useState<"landing" | "login" | "register">(
+    "landing",
+  );
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [authLoading, setAuthLoading] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [forgotPasswordMode, setForgotPasswordMode] = useState(false);
+  const [resetPasswordMode, setResetPasswordMode] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState<DocumentItem | null>(null);
   const [authMessage, setAuthMessage] = useState("");
+  const [authLoading, setAuthLoading] = useState(false);
+  const [view, setView] = useState<View>("dashboard");
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [documents, setDocuments] = useState<DocumentItem[]>([]);
-  const [documentsLoading, setDocumentsLoading] = useState(false);
-  const [documentError, setDocumentError] = useState("");
-  const [uploadLoading, setUploadLoading] = useState(false);
+  const [docsLoading, setDocsLoading] = useState(false);
+  const [docError, setDocError] = useState("");
+  const [uploading, setUploading] = useState(false);
   const [uploadMessage, setUploadMessage] = useState("");
+  const fileRef = useRef<HTMLInputElement>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedDocument, setSelectedDocument] = useState("all");
+  const [searchDoc, setSearchDoc] = useState("all");
+  const [searchResult, setSearchResult] = useState<SearchResponse | null>(null);
+  const [searchAnswer, setSearchAnswer] = useState<AskResponse | null>(null);
   const [searchLoading, setSearchLoading] = useState(false);
   const [searchError, setSearchError] = useState("");
-  const [searchResponse, setSearchResponse] = useState<SearchResponse | null>(
-    null,
-  );
-  const [searchMode, setSearchMode] = useState<"search" | "ask">("search");
-  const [askResponse, setAskResponse] = useState<AskResponse | null>(null);
+  const [chatDoc, setChatDoc] = useState("");
+  const [conversations, setConversations] = useState<ChatConversation[]>([]);
+  const [conversationId, setConversationId] = useState("");
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [chatQuery, setChatQuery] = useState("");
+  const [chatLoading, setChatLoading] = useState(false);
+  const [chatError, setChatError] = useState("");
+  const [chatLoadingHistory, setChatLoadingHistory] = useState(false);
   const [logoutLoading, setLogoutLoading] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const readyDocuments = useMemo(
-    () => documents.filter((document) => document.status === "ready"),
+  const readyDocs = useMemo(
+    () => documents.filter((d) => d.status === "ready"),
     [documents],
   );
-
   const refreshDocuments = useCallback(async () => {
-    setDocumentsLoading(true);
-    setDocumentError("");
+    setDocsLoading(true);
+    setDocError("");
     try {
-      const data = await listDocuments();
-      setDocuments(data);
-    } catch (error) {
-      setDocumentError(
-        error instanceof Error ? error.message : "Gagal memuat dokumen.",
-      );
+      setDocuments(await listDocuments());
+    } catch (e) {
+      setDocError(e instanceof Error ? e.message : "Gagal memuat dokumen.");
     } finally {
-      setDocumentsLoading(false);
+      setDocsLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    let mounted = true;
-
+    let active = true;
     supabase.auth.getSession().then(({ data, error }) => {
-      if (!mounted) return;
+      if (!active) return;
       if (error) setAuthMessage(error.message);
       setUserEmail(data.session?.user.email ?? "");
       setSessionReady(true);
     });
-
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log("[AUTH EVENT]", event, {
+        hasSession: Boolean(session),
+        hasEmail: Boolean(session?.user.email),
+      });
       setUserEmail(session?.user.email ?? "");
       setSessionReady(true);
-
+      if (event === "PASSWORD_RECOVERY") {
+        setResetPasswordMode(true);
+        setForgotPasswordMode(false);
+        setAuthView("login");
+        setAuthMessage("Silakan masukkan kata sandi baru.");
+      }
       if (!session) {
         setDocuments([]);
-        setSearchResponse(null);
+        setConversations([]);
+        setMessages([]);
+        setConversationId("");
       } else if (
-        event === "SIGNED_IN" ||
-        event === "INITIAL_SESSION" ||
-        event === "TOKEN_REFRESHED"
-      ) {
+        ["SIGNED_IN", "INITIAL_SESSION", "TOKEN_REFRESHED"].includes(event)
+      )
         void refreshDocuments();
-      }
     });
-
     return () => {
-      mounted = false;
+      active = false;
       subscription.unsubscribe();
     };
   }, [refreshDocuments]);
 
-  async function handleAuthSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function submitAuth(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setAuthLoading(true);
     setAuthMessage("");
 
-    try {
-      if (!API_URL) throw new Error("URL backend belum dikonfigurasi.");
+    const normalizedEmail = email.trim();
 
-      if (isRegister) {
-        const { data, error } = await supabase.auth.signUp({ email, password });
+    try {
+      // Validasi email
+      if (!resetPasswordMode && !normalizedEmail) {
+        setAuthMessage("Masukkan alamat email terlebih dahulu.");
+        return;
+      }
+
+      // Validasi khusus registrasi
+      if (!forgotPasswordMode && authView === "register") {
+        if (password.length < 8) {
+          setAuthMessage("Kata sandi minimal 8 karakter.");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          setAuthMessage("Konfirmasi kata sandi tidak cocok.");
+          return;
+        }
+      }
+
+      // Reset kata sandi
+      if (forgotPasswordMode) {
+        const { error } = await supabase.auth.resetPasswordForEmail(
+          normalizedEmail,
+          {
+            redirectTo: `${window.location.origin}/?mode=reset-password`,
+          },
+        );
+
         if (error) throw error;
 
+        setAuthMessage(
+          "Jika email terdaftar, tautan untuk mengatur ulang kata sandi akan dikirim ke email tersebut.",
+        );
+        setForgotPasswordMode(false);
+        return;
+      }
+
+      if (resetPasswordMode) {
+        if (password.length < 8) {
+          throw new Error("Kata sandi baru minimal 8 karakter.");
+        }
+
+        if (password !== confirmPassword) {
+          throw new Error("Konfirmasi kata sandi tidak cocok.");
+        }
+
+        const { error } = await supabase.auth.updateUser({
+          password,
+        });
+
+        if (error) throw error;
+
+        setPassword("");
+        setConfirmPassword("");
+        setResetPasswordMode(false);
+        setAuthMessage(
+          "Kata sandi berhasil diperbarui. Silakan masuk menggunakan kata sandi baru.",
+        );
+        setAuthView("login");
+        await supabase.auth.signOut();
+
+        return;
+      }
+
+      // Registrasi
+      if (authView === "register") {
+        const { data, error } = await supabase.auth.signUp({
+          email: normalizedEmail,
+          password,
+        });
+
+        if (error) throw error;
+
+        setPassword("");
+        setConfirmPassword("");
+
         if (!data.session) {
-          setIsRegister(false);
+          setAuthView("login");
           setAuthMessage(
-            "Registrasi berhasil. Periksa email untuk konfirmasi, lalu login.",
+            "Pendaftaran berhasil. Periksa email untuk konfirmasi sebelum login.",
           );
           return;
         }
       } else {
+        // Login
         const { error } = await supabase.auth.signInWithPassword({
-          email,
+          email: normalizedEmail,
           password,
         });
+
         if (error) throw error;
       }
 
-      const { data, error } = await supabase.auth.getSession();
-      if (error) throw error;
+      setPassword("");
+      setConfirmPassword("");
+      setAuthView("landing");
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message.toLowerCase() : "";
 
-      const token = data.session?.access_token;
-      if (!token) {
-        throw new Error("Sesi login tidak ditemukan. Silakan login kembali.");
-      }
+      console.error("[AUTH ERROR]", error);
 
-      const response = await fetch(`${API_URL}/auth/me`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (!response.ok) {
-        await supabase.auth.signOut();
-        throw new Error(
-          "Login berhasil, tetapi verifikasi backend gagal. Periksa koneksi backend.",
+      if (
+        message.includes("invalid login credentials") ||
+        message.includes("invalid_credentials")
+      ) {
+        setAuthMessage(
+          "Email atau kata sandi yang kamu masukkan salah. Silakan periksa kembali.",
+        );
+      } else if (
+        message.includes("user already registered") ||
+        message.includes("already been registered") ||
+        message.includes("already registered")
+      ) {
+        setAuthMessage(
+          "Email ini sudah terdaftar. Silakan login atau gunakan email lain.",
+        );
+      } else if (
+        message.includes("password should be at least") ||
+        message.includes("password is too short")
+      ) {
+        setAuthMessage("Kata sandi minimal 8 karakter.");
+      } else if (
+        message.includes("invalid email") ||
+        message.includes("email address is invalid")
+      ) {
+        setAuthMessage("Masukkan alamat email dengan format yang benar.");
+      } else if (
+        message.includes("failed to fetch") ||
+        message.includes("networkerror") ||
+        message.includes("network request failed")
+      ) {
+        setAuthMessage(
+          "Tidak dapat terhubung ke server. Periksa koneksi internet dan coba lagi.",
+        );
+      } else {
+        setAuthMessage(
+          "Autentikasi gagal. Silakan periksa kembali data yang kamu masukkan dan coba lagi.",
         );
       }
-
-      setUserEmail(data.session?.user.email ?? email);
-      setPassword("");
-      setAuthMessage("");
-    } catch (error) {
-      setAuthMessage(
-        error instanceof Error ? error.message : "Autentikasi gagal.",
-      );
     } finally {
       setAuthLoading(false);
     }
   }
 
-  async function handleLogout() {
+  async function signInWithGoogle() {
+    setAuthLoading(true);
+    setAuthMessage("");
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: { redirectTo: `${window.location.origin}/` },
+      });
+      if (error) throw error;
+    } catch (e) {
+      setAuthMessage(e instanceof Error ? e.message : "Login Google gagal.");
+    } finally {
+      setAuthLoading(false);
+    }
+  }
+  async function logout() {
     setLogoutLoading(true);
     try {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
-      setEmail("");
-      setPassword("");
-      setAuthMessage("");
-      setUploadMessage("");
-      setSearchQuery("");
-      setSearchResponse(null);
-    } catch (error) {
-      setAuthMessage(error instanceof Error ? error.message : "Gagal logout.");
+      setAuthView("landing");
+      setView("dashboard");
+    } catch (e) {
+      setDocError(e instanceof Error ? e.message : "Gagal keluar.");
     } finally {
       setLogoutLoading(false);
     }
   }
-
-  async function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    event.target.value = "";
+  async function uploadFile(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = "";
     if (!file) return;
-
     setUploadMessage("");
-    setDocumentError("");
-
+    setDocError("");
     if (
       !file.name.toLowerCase().endsWith(".pdf") ||
       file.type !== "application/pdf"
@@ -300,748 +415,1313 @@ export default function Home() {
       setUploadMessage("Ukuran file melebihi batas 10 MB.");
       return;
     }
-
-    setUploadLoading(true);
+    setUploading(true);
     setUploadMessage("Mengunggah PDF...");
     try {
-      const uploaded = await uploadDocument(file);
-      setUploadMessage(
-        "PDF berhasil diunggah. Sedang memproses isi dokumen...",
-      );
+      const doc = await uploadDocument(file);
       await refreshDocuments();
-
+      setUploadMessage("PDF diunggah. Memproses isi dokumen...");
       try {
-        await processDocument(uploaded.id);
+        await processDocument(doc.id);
         setUploadMessage("Dokumen berhasil diproses dan siap dicari.");
-      } catch (error) {
+      } catch (err) {
         setUploadMessage(
-          error instanceof Error
-            ? `PDF tersimpan, tetapi pemrosesan gagal: ${error.message}`
+          err instanceof Error
+            ? `PDF tersimpan, tetapi pemrosesan gagal: ${err.message}`
             : "PDF tersimpan, tetapi pemrosesan gagal.",
         );
       }
-
       await refreshDocuments();
-    } catch (error) {
+    } catch (err) {
       setUploadMessage(
-        error instanceof Error ? error.message : "Gagal mengunggah PDF.",
+        err instanceof Error ? err.message : "Gagal mengunggah PDF.",
       );
     } finally {
-      setUploadLoading(false);
+      setUploading(false);
     }
   }
-
-  async function handleSearch(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const query = searchQuery.trim();
-
-    if (!query) {
+  async function removeDocument(doc: DocumentItem) {
+    setConfirmDelete(doc);
+  }
+  async function confirmRemoveDocument() {
+    const doc = confirmDelete;
+    if (!doc) return;
+    setConfirmDelete(null);
+    try {
+      await deleteDocument(doc.id);
+      setDocuments((curr) => curr.filter((d) => d.id !== doc.id));
+      if (searchDoc === doc.id) {
+        setSearchDoc("all");
+        setSearchResult(null);
+        setSearchAnswer(null);
+      }
+      if (chatDoc === doc.id) {
+        setChatDoc("");
+        setConversations([]);
+        setMessages([]);
+        setConversationId("");
+      }
+      setUploadMessage(`Dokumen "${doc.filename}" berhasil dihapus.`);
+    } catch (err) {
+      setDocError(
+        err instanceof Error ? err.message : "Gagal menghapus dokumen.",
+      );
+    }
+  }
+  async function submitSearch(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const q = searchQuery.trim();
+    if (!q) {
       setSearchError("Masukkan pertanyaan atau kata kunci terlebih dahulu.");
       return;
     }
-
     setSearchLoading(true);
     setSearchError("");
-    setSearchResponse(null);
-    setAskResponse(null);
-
+    setSearchResult(null);
+    setSearchAnswer(null);
     try {
-      const documentId =
-        selectedDocument === "all" ? undefined : selectedDocument;
-
-      if (searchMode === "ask") {
-        const result = await askDocument(query, documentId);
-        setAskResponse(result);
-      } else {
-        const result = await searchDocuments(query, documentId);
-        setSearchResponse(result);
-      }
-    } catch (error) {
-      setSearchError(
-        error instanceof Error ? error.message : "Pencarian gagal.",
+      const id = searchDoc === "all" ? undefined : searchDoc;
+      const [results, answer] = await Promise.all([
+        searchDocuments(q, id),
+        askDocument(q, id),
+      ]);
+      // Keep only search excerpts that are among the sources selected as evidence by the answer model.
+      const allowed = new Set(
+        answer.sources.map(
+          (s) => `${s.document_id}:${s.page_number}:${s.content.trim()}`,
+        ),
       );
+      const relevant = results.results.filter((r) =>
+        allowed.has(`${r.document_id}:${r.page_number}:${r.content.trim()}`),
+      );
+      setSearchResult({
+        ...results,
+        results: relevant,
+        total_results: relevant.length,
+      });
+      setSearchAnswer(answer);
+    } catch (err) {
+      setSearchError(err instanceof Error ? err.message : "Pencarian gagal.");
     } finally {
       setSearchLoading(false);
     }
   }
-
-  async function handleDelete(document: DocumentItem) {
-    const confirmed = window.confirm(
-      `Hapus "${document.filename}"? File dan metadata dokumen akan dihapus.`,
-    );
-    if (!confirmed) return;
-
-    setDocumentError("");
+  const loadConversations = useCallback(async (documentId: string) => {
+    if (!documentId) {
+      setConversations([]);
+      return;
+    }
     try {
-      await deleteDocument(document.id);
-      setDocuments((current) =>
-        current.filter((item) => item.id !== document.id),
+      setConversations(await listConversations(documentId));
+    } catch (e) {
+      setChatError(
+        e instanceof Error ? e.message : "Gagal memuat riwayat chat.",
       );
-      if (selectedDocument === document.id) setSelectedDocument("all");
-      setSearchResponse((current) => {
-        if (!current) return current;
-        return {
-          ...current,
-          results: current.results.filter(
-            (result) => result.document_id !== document.id,
-          ),
-          total_results: current.results.filter(
-            (result) => result.document_id !== document.id,
-          ).length,
-        };
-      });
-      setUploadMessage(`Dokumen "${document.filename}" berhasil dihapus.`);
-    } catch (error) {
-      setDocumentError(
-        error instanceof Error ? error.message : "Gagal menghapus dokumen.",
+    }
+  }, []);
+  async function selectChatDocument(id: string) {
+    setChatDoc(id);
+    setConversationId("");
+    setMessages([]);
+    setChatQuery("");
+    setChatError("");
+    if (id) await loadConversations(id);
+    else setConversations([]);
+  }
+  async function openConversation(id: string) {
+    setChatLoadingHistory(true);
+    setChatError("");
+    try {
+      const data = await getConversation(id);
+      setConversationId(data.id);
+      setChatDoc(data.document_id);
+      setMessages(data.messages);
+    } catch (e) {
+      setChatError(
+        e instanceof Error ? e.message : "Gagal membuka percakapan.",
       );
+    } finally {
+      setChatLoadingHistory(false);
+    }
+  }
+  async function sendChat(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const q = chatQuery.trim();
+    if (!q) return;
+    if (!chatDoc) {
+      setChatError(
+        "Pilih dokumen terlebih dahulu agar chat memiliki sumber yang jelas.",
+      );
+      return;
+    }
+    setChatLoading(true);
+    setChatError("");
+    setChatQuery("");
+    const optimistic: ChatMessage = {
+      id: `pending-${Date.now()}`,
+      role: "user",
+      content: q,
+      created_at: new Date().toISOString(),
+      sources: [],
+    };
+    setMessages((current) => [...current, optimistic]);
+    try {
+      let id = conversationId;
+      if (!id) {
+        const conv = await createConversation(chatDoc, q.slice(0, 80));
+        id = conv.id;
+        setConversationId(id);
+      }
+      const result = await postChatMessage(id, q);
+      setMessages((current) => [
+        ...current.filter((m) => m.id !== optimistic.id),
+        result.user_message,
+        result.assistant_message,
+      ]);
+      await loadConversations(chatDoc);
+    } catch (err) {
+      setMessages((current) => current.filter((m) => m.id !== optimistic.id));
+      setChatQuery(q);
+      setChatError(err instanceof Error ? err.message : "Pesan gagal dikirim.");
+    } finally {
+      setChatLoading(false);
     }
   }
 
-  if (!sessionReady) {
+  if (!sessionReady)
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#F3EFDF] px-6 text-[#1F2A1F]">
-        <div className="flex items-center gap-3 rounded-full border border-[#004B08]/10 bg-white/70 px-5 py-3 shadow-sm">
-          <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-[#004B08]" />
-          <span className="text-sm font-medium">Menyiapkan DocuMind ID...</span>
-        </div>
+      <main className="loading-screen">
+        <span className="pulse-dot" />
+        Menyiapkan DocuMind ID...
       </main>
     );
-  }
 
-  if (!userEmail) {
-    return (
-      <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#F3EFDF] px-5 py-12 text-[#1F2A1F]">
-        <div className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-[#C99A3D]/15 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-24 -right-16 h-96 w-96 rounded-full bg-[#004B08]/10 blur-3xl" />
+  if (!userEmail || resetPasswordMode) {
+    if (resetPasswordMode) {
+      return (
+        <main className="auth-screen">
+          <div className="auth-glow" />
+          <a className="brand brand-auth" href="/">
+            <span className="brand-icon">
+              <Icon name="logo" />
+            </span>
+            <span>
+              DocuMind <b>ID</b>
+            </span>
+          </a>
 
-        <div className="relative grid w-full max-w-5xl overflow-hidden rounded-[2rem] border border-white/70 bg-white/60 shadow-[0_24px_80px_rgba(31,42,31,0.12)] backdrop-blur-xl md:grid-cols-2">
-          <section className="flex flex-col justify-between bg-[#004B08] p-8 text-[#F3EFDF] sm:p-12">
-            <div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-white/10">
-                <Icon name="book" className="h-6 w-6" />
-              </div>
-              <p className="mt-8 text-xs font-semibold uppercase tracking-[0.28em] text-[#DCC58F]">
-                Your documents, understood
-              </p>
-              <h1 className="mt-4 max-w-sm text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-                Meet your documents halfway.
-              </h1>
-              <p className="mt-5 max-w-sm text-sm leading-7 text-[#F3EFDF]/75">
-                Temukan informasi dari PDF berbahasa Indonesia melalui pencarian
-                semantik dan kutipan yang terhubung ke halaman sumber.
-              </p>
-            </div>
-            <div className="mt-12 flex items-center justify-between border-t border-white/15 pt-5 text-xs text-[#F3EFDF]/60">
-              <span>DocuMind ID</span>
-              <span>Built for clarity.</span>
-            </div>
-          </section>
+          <section className="auth-card">
+            <h1>Atur kata sandi baru</h1>
+            <p className="muted">
+              Buat kata sandi baru untuk akun DocuMind ID kamu.
+            </p>
 
-          <section className="p-7 sm:p-12">
-            <div className="mb-8">
-              <p className="text-sm font-medium text-[#004B08]">
-                Selamat datang
-              </p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight">
-                {isRegister ? "Buat akun baru" : "Masuk ke akun"}
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-[#1F2A1F]/65">
-                {isRegister
-                  ? "Daftar untuk mulai mengelola dokumen PDF-mu."
-                  : "Lanjutkan pencarian pengetahuan dari dokumenmu."}
-              </p>
-            </div>
+            <form onSubmit={submitAuth} className="stack-form" noValidate>
+              {authMessage && <p className="notice">{authMessage}</p>}
 
-            <form onSubmit={handleAuthSubmit} className="space-y-5">
-              <div>
-                <label
-                  htmlFor="email"
-                  className="mb-2 block text-sm font-medium"
-                >
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  placeholder="nama@email.com"
-                  className="h-12 w-full rounded-2xl border border-[#1F2A1F]/15 bg-white/80 px-4 text-sm outline-none transition placeholder:text-[#1F2A1F]/35 focus:border-[#004B08] focus:ring-4 focus:ring-[#004B08]/10"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="mb-2 block text-sm font-medium"
-                >
-                  Password
-                </label>
-                <input
-                  id="password"
-                  type="password"
-                  autoComplete={
-                    isRegister ? "new-password" : "current-password"
-                  }
-                  minLength={6}
-                  required
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  placeholder="Minimal 6 karakter"
-                  className="h-12 w-full rounded-2xl border border-[#1F2A1F]/15 bg-white/80 px-4 text-sm outline-none transition placeholder:text-[#1F2A1F]/35 focus:border-[#004B08] focus:ring-4 focus:ring-[#004B08]/10"
-                />
-              </div>
+              <label>
+                Kata sandi baru
+                <span className="password-field">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    minLength={8}
+                    placeholder="Minimal 8 karakter"
+                    autoComplete="new-password"
+                  />
+                  <button
+                    type="button"
+                    className="password-toggle"
+                    aria-label={
+                      showPassword
+                        ? "Sembunyikan kata sandi"
+                        : "Lihat kata sandi"
+                    }
+                    onClick={() => setShowPassword((v) => !v)}
+                  >
+                    <Icon name={showPassword ? "eyeOff" : "eye"} size={17} />
+                  </button>
+                </span>
+              </label>
 
-              {authMessage && (
-                <p
-                  role="status"
-                  className="rounded-2xl border border-[#C99A3D]/30 bg-[#C99A3D]/10 px-4 py-3 text-sm leading-6"
-                >
-                  {authMessage}
-                </p>
-              )}
+              <label>
+                Konfirmasi kata sandi baru
+                <span className="password-field">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                    minLength={8}
+                    placeholder="Ulangi kata sandi baru"
+                    autoComplete="new-password"
+                  />
+                  <button
+                    type="button"
+                    className="password-toggle"
+                    aria-label={
+                      showConfirmPassword
+                        ? "Sembunyikan konfirmasi kata sandi"
+                        : "Lihat konfirmasi kata sandi"
+                    }
+                    onClick={() => setShowConfirmPassword((v) => !v)}
+                  >
+                    <Icon
+                      name={showConfirmPassword ? "eyeOff" : "eye"}
+                      size={17}
+                    />
+                  </button>
+                </span>
+              </label>
 
               <button
-                type="submit"
+                className="button button-primary button-wide"
                 disabled={authLoading}
-                className="flex h-12 w-full items-center justify-center rounded-full bg-[#004B08] px-5 text-sm font-semibold text-white transition hover:bg-[#003906] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {authLoading ? "Memproses..." : "Simpan kata sandi baru"}
+                <Icon name="arrow" size={17} />
+              </button>
+            </form>
+          </section>
+        </main>
+      );
+    }
+    if (resetPasswordMode || authView === "login" || authView === "register")
+      return (
+        <main className="auth-screen">
+          <div className="auth-glow" />
+          <a
+            className="brand brand-auth"
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setAuthView("landing");
+              setForgotPasswordMode(false);
+            }}
+          >
+            <span className="brand-icon">
+              <Icon name="logo" />
+            </span>
+            <span>
+              DocuMind <b>ID</b>
+            </span>
+          </a>
+          <section className="auth-card">
+            <h1>
+              {forgotPasswordMode
+                ? "Atur ulang kata sandi"
+                : authView === "register"
+                  ? "Buat akun DocuMind"
+                  : "Login ke DocuMind"}
+            </h1>
+            <p className="muted">
+              {forgotPasswordMode
+                ? "Masukkan email untuk menerima tautan pengaturan ulang kata sandi."
+                : authView === "register"
+                  ? "Daftar untuk mulai mencari dan bertanya pada dokumen PDF."
+                  : "Masuk untuk melanjutkan pekerjaan dokumenmu."}
+            </p>
+            <form onSubmit={submitAuth} className="stack-form" noValidate>
+              {authMessage && <p className="notice">{authMessage}</p>}
+              <label>
+                Email
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  placeholder="nama@email.com"
+                  autoComplete="email"
+                />
+              </label>
+              {!forgotPasswordMode && (
+                <>
+                  <label>
+                    Kata sandi{" "}
+                    <span className="password-field">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        minLength={
+                          resetPasswordMode
+                            ? 8
+                            : authView === "register"
+                              ? 8
+                              : undefined
+                        }
+                        placeholder={
+                          resetPasswordMode
+                            ? "Minimal 8 karakter"
+                            : authView === "register"
+                              ? "Minimal 8 karakter"
+                              : "Masukkan kata sandi"
+                        }
+                        autoComplete={
+                          resetPasswordMode || authView === "register"
+                            ? "new-password"
+                            : "current-password"
+                        }
+                      />
+                      <button
+                        type="button"
+                        className="password-toggle"
+                        aria-label={
+                          showPassword
+                            ? "Sembunyikan kata sandi"
+                            : "Lihat kata sandi"
+                        }
+                        onClick={() => setShowPassword((v) => !v)}
+                      >
+                        <Icon
+                          name={showPassword ? "eyeOff" : "eye"}
+                          size={17}
+                        />
+                      </button>
+                    </span>
+                  </label>
+                  {(authView === "register" || resetPasswordMode) && (
+                    <label>
+                      Konfirmasi kata sandi{" "}
+                      <span className="password-field">
+                        <input
+                          type={showConfirmPassword ? "text" : "password"}
+                          value={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          required
+                          minLength={authView === "register" ? 8 : undefined}
+                          placeholder="Ulangi kata sandi"
+                          autoComplete="new-password"
+                        />
+                        <button
+                          type="button"
+                          className="password-toggle"
+                          aria-label={
+                            showConfirmPassword
+                              ? "Sembunyikan konfirmasi kata sandi"
+                              : "Lihat konfirmasi kata sandi"
+                          }
+                          onClick={() => setShowConfirmPassword((v) => !v)}
+                        >
+                          <Icon
+                            name={showConfirmPassword ? "eyeOff" : "eye"}
+                            size={17}
+                          />
+                        </button>
+                      </span>
+                    </label>
+                  )}
+                  {authView === "login" && (
+                    <button
+                      type="button"
+                      className="forgot-link"
+                      onClick={() => {
+                        setForgotPasswordMode(true);
+                        setAuthMessage("");
+                      }}
+                    >
+                      Lupa kata sandi?
+                    </button>
+                  )}
+                </>
+              )}
+              <button
+                className="button button-primary button-wide"
+                disabled={authLoading}
               >
                 {authLoading
                   ? "Memproses..."
-                  : isRegister
-                    ? "Buat akun"
-                    : "Masuk"}
+                  : resetPasswordMode
+                    ? "Simpan kata sandi baru"
+                    : forgotPasswordMode
+                      ? "Kirim tautan reset"
+                      : authView === "register"
+                        ? "Buat akun"
+                        : "Login"}
+
+                <Icon name="arrow" size={17} />
               </button>
             </form>
+            {!forgotPasswordMode && (
+              <>
+                <div className="auth-divider">
+                  <span>atau</span>
+                </div>
+                <button
+                  className="button button-google button-wide"
+                  type="button"
+                  disabled={authLoading}
+                  onClick={() => void signInWithGoogle()}
+                >
+                  <GoogleIcon size={20} /> Lanjutkan dengan Google
+                </button>
+              </>
+            )}
 
-            <p className="mt-6 text-center text-sm text-[#1F2A1F]/65">
-              {isRegister ? "Sudah punya akun?" : "Belum punya akun?"}{" "}
-              <button
-                type="button"
-                onClick={() => {
-                  setIsRegister((current) => !current);
-                  setAuthMessage("");
-                }}
-                className="font-semibold text-[#004B08] underline decoration-[#C99A3D] decoration-2 underline-offset-4"
-              >
-                {isRegister ? "Masuk" : "Daftar"}
-              </button>
-            </p>
+            {!forgotPasswordMode && (
+              <p className="auth-switch">
+                {authView === "register"
+                  ? "Sudah punya akun?"
+                  : "Belum punya akun?"}{" "}
+                <button
+                  className="text-button"
+                  onClick={() => {
+                    setAuthView(authView === "register" ? "login" : "register");
+                    setAuthMessage("");
+                    setConfirmPassword("");
+                  }}
+                >
+                  {authView === "register" ? "Login" : "Daftar gratis"}
+                </button>
+              </p>
+            )}
+            <button
+              className="back-link"
+              onClick={() => {
+                setForgotPasswordMode(false);
+                setAuthView("landing");
+                setAuthMessage("");
+              }}
+            >
+              ← Kembali ke beranda
+            </button>
           </section>
-        </div>
-      </main>
-    );
-  }
-
-  return (
-    <main className="min-h-screen bg-[#F3EFDF] text-[#1F2A1F]">
-      <header className="sticky top-0 z-20 border-b border-[#1F2A1F]/10 bg-[#F3EFDF]/85 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
-          <a href="#" className="flex min-w-0 items-center gap-3">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#004B08] text-[#F3EFDF]">
-              <Icon name="book" />
+        </main>
+      );
+    return (
+      <main className="landing">
+        <nav className="landing-nav">
+          <a className="brand" href="#top">
+            <span className="brand-icon">
+              <Icon name="logo" />
             </span>
-            <span className="min-w-0">
-              <span className="block text-base font-bold tracking-tight">
-                DocuMind ID
-              </span>
-              <span className="block text-xs text-[#1F2A1F]/55">
-                Document intelligence
-              </span>
+            <span>
+              DocuMind <b>ID</b>
             </span>
           </a>
-          <div className="flex items-center gap-3">
-            <span className="hidden max-w-48 truncate text-sm text-[#1F2A1F]/65 sm:block">
-              {userEmail}
-            </span>
+          <div className="landing-nav-actions">
             <button
-              type="button"
-              onClick={handleLogout}
-              disabled={logoutLoading}
-              className="flex items-center gap-2 rounded-full border border-[#1F2A1F]/15 bg-white/50 px-4 py-2.5 text-sm font-medium transition hover:bg-white disabled:opacity-50"
+              className="button button-ghost"
+              onClick={() => setAuthView("login")}
             >
-              <Icon name="logout" className="h-4 w-4" />
-              <span>{logoutLoading ? "Keluar..." : "Logout"}</span>
+              Login
+            </button>
+            <button
+              className="button button-primary"
+              onClick={() => setAuthView("register")}
+            >
+              Mulai Gratis <Icon name="arrow" size={16} />
             </button>
           </div>
-        </div>
-      </header>
-
-      <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 sm:py-12">
-        <section className="relative overflow-hidden rounded-[2rem] bg-[#004B08] p-7 text-[#F3EFDF] sm:p-10 lg:p-12">
-          <div className="pointer-events-none absolute -right-10 -top-24 h-72 w-72 rounded-full border-[48px] border-white/5" />
-          <div className="pointer-events-none absolute bottom-[-5rem] right-40 h-52 w-52 rounded-full bg-[#C99A3D]/20 blur-3xl" />
-          <div className="relative max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-medium text-[#E6D5A8]">
-              <Icon name="spark" className="h-4 w-4" />
-              Ruang kerja dokumenmu
-            </div>
-            <h1 className="mt-5 text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">
-              Bukan sekadar menyimpan dokumen. Temukan isinya.
+        </nav>
+        <section className="landing-hero" id="top">
+          <div className="hero-copy">
+            <h1>
+              Temukan jawaban di dalam <span>dokumenmu.</span>
             </h1>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#F3EFDF]/75 sm:text-base">
-              Unggah PDF, proses kontennya, lalu cari bagian yang paling relevan
-              dengan pertanyaanmu. Setiap hasil menyertakan halaman sumber untuk
-              memudahkan verifikasi.
+            <p>
+              Unggah PDF, ajukan pertanyaan dengan bahasa sehari-hari, dan
+              telusuri jawaban yang disertai sumber halaman dari dokumenmu.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3 text-sm">
-              <span className="rounded-full bg-white/10 px-4 py-2">
-                {documents.length} dokumen
+            <div className="hero-actions">
+              <button
+                className="button button-primary button-large"
+                onClick={() => setAuthView("register")}
+              >
+                Mulai Gratis <Icon name="arrow" />
+              </button>
+              <button
+                className="button button-ghost button-large"
+                onClick={() => setAuthView("login")}
+              >
+                Login ke akun
+              </button>
+            </div>
+            <div className="hero-proof">
+              <span>
+                <i />
+                PDF hingga 10 MB
               </span>
-              <span className="rounded-full bg-white/10 px-4 py-2">
-                {readyDocuments.length} siap dicari
+              <span>
+                <i />
+                Sumber halaman
+              </span>
+              <span>
+                <i />
+                Ruang dokumen pribadi
+              </span>
+            </div>
+          </div>
+          <div className="hero-preview">
+            <div className="preview-window">
+              <div className="preview-top">
+                <div className="window-dots">
+                  <i />
+                  <i />
+                  <i />
+                </div>
+                <span>DocuMind Workspace</span>
+                <span className="preview-status">● Siap</span>
+              </div>
+              <div className="preview-body">
+                <aside className="preview-sidebar">
+                  <span className="preview-nav active">
+                    <Icon name="dashboard" size={15} /> Dashboard
+                  </span>
+                  <span className="preview-nav">
+                    <Icon name="search" size={15} /> Cari dokumen
+                  </span>
+                  <span className="preview-nav">
+                    <Icon name="chat" size={15} /> Chat AI
+                  </span>
+                </aside>
+                <div className="preview-content">
+                  <h3>Selamat datang 👋</h3>
+                  <div className="preview-upload">
+                    <Icon name="upload" size={22} />
+                    <b>Unggah dokumen PDF</b>
+                    <small>Tarik file atau pilih dari perangkat</small>
+                  </div>
+                  <div className="preview-doc">
+                    <span className="pdf-icon">PDF</span>
+                    <span>
+                      <b>Pedoman Pengguna.pdf</b>
+                      <small>8 halaman · Siap dicari</small>
+                    </span>
+                    <span className="mini-check">✓</span>
+                  </div>
+                  <div className="preview-question">
+                    <span className="avatar-ai">
+                      <Icon name="spark" size={14} />
+                    </span>
+                    <div>
+                      <small>Jawaban</small>
+                      <p>
+                        Bagian ini menjelaskan langkah utama berdasarkan isi
+                        dokumen...
+                      </p>
+                      <em>↳ Sumber: halaman 3</em>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="floating-note note-top">
+              <span className="note-icon">
+                <Icon name="search" size={17} />
+              </span>
+              <span>
+                <b>Cari lebih cepat</b>
+                <small>Berbasis isi PDF</small>
+              </span>
+            </div>
+            <div className="floating-note note-bottom">
+              <span className="note-icon note-check">✓</span>
+              <span>
+                <b>Jawaban bersumber</b>
+                <small>Rujukan halaman jelas</small>
               </span>
             </div>
           </div>
         </section>
-
-        {documentError && (
-          <div
-            role="alert"
-            className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-800"
-          >
-            <span>{documentError}</span>
-            <button
-              type="button"
-              onClick={() => void refreshDocuments()}
-              className="font-semibold underline underline-offset-4"
-            >
-              Coba lagi
-            </button>
+        <section className="landing-features">
+          <div className="section-heading">
+            <div className="eyebrow">CARA KERJA</div>
+            <h2>Dari dokumen panjang menjadi jawaban yang jelas.</h2>
+            <p>
+              Alur kerja sederhana untuk memahami informasi tanpa harus mencari
+              halaman satu per satu.
+            </p>
           </div>
-        )}
-
-        <div className="mt-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-          <section className="rounded-[2rem] border border-[#1F2A1F]/10 bg-white/65 p-6 shadow-sm backdrop-blur sm:p-8">
-            <div className="flex items-start gap-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#C99A3D]/20 text-[#004B08]">
+          <div className="feature-grid">
+            <article className="feature-card">
+              <span className="feature-icon">
                 <Icon name="upload" />
               </span>
-              <div>
-                <h2 className="text-xl font-semibold">Tambah dokumen</h2>
-                <p className="mt-1 text-sm leading-6 text-[#1F2A1F]/60">
-                  Unggah PDF untuk mengekstrak teks dan menyiapkannya bagi
-                  pencarian.
-                </p>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => fileInputRef.current?.click()}
-              disabled={uploadLoading}
-              className="mt-6 flex min-h-40 w-full flex-col items-center justify-center rounded-3xl border-2 border-dashed border-[#004B08]/25 bg-[#F3EFDF]/70 px-5 py-7 text-center transition hover:border-[#004B08]/60 hover:bg-[#F3EFDF] disabled:cursor-wait disabled:opacity-60"
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#004B08] text-white">
-                <Icon name="upload" className="h-5 w-5" />
-              </span>
-              <span className="mt-4 text-sm font-semibold">
-                {uploadLoading
-                  ? "Sedang memproses dokumen..."
-                  : "Pilih file PDF"}
-              </span>
-              <span className="mt-1 text-xs text-[#1F2A1F]/55">
-                Format PDF · Maksimal 10 MB
-              </span>
-            </button>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".pdf,application/pdf"
-              className="hidden"
-              onChange={handleFileChange}
-              disabled={uploadLoading}
-            />
-
-            {uploadMessage && (
-              <p
-                role="status"
-                className="mt-4 rounded-2xl bg-[#004B08]/5 px-4 py-3 text-sm leading-6 text-[#004B08]"
-              >
-                {uploadMessage}
+              <h3>1. Unggah PDF</h3>
+              <p>
+                Simpan dokumen di ruang kerja pribadimu. DocuMind memproses isi
+                dokumen agar dapat dicari.
               </p>
+            </article>
+            <article className="feature-card">
+              <span className="feature-icon">
+                <Icon name="search" />
+              </span>
+              <h3>2. Cari atau bertanya</h3>
+              <p>
+                Gunakan kata kunci untuk menemukan bagian dokumen atau tanyakan
+                sesuatu dengan bahasa sehari-hari.
+              </p>
+            </article>
+            <article className="feature-card">
+              <span className="feature-icon">
+                <Icon name="book" />
+              </span>
+              <h3>3. Periksa sumber</h3>
+              <p>
+                Baca kutipan dan nomor halaman yang relevan untuk memeriksa
+                konteks jawaban AI.
+              </p>
+            </article>
+          </div>
+        </section>
+        <section className="landing-cta">
+          <div>
+            <div className="eyebrow">MULAI SEKARANG</div>
+            <h2>Dokumenmu punya jawabannya.</h2>
+            <p>
+              Mulai gunakan DocuMind ID untuk menelusuri PDF dengan lebih
+              terarah.
+            </p>
+          </div>
+          <button
+            className="button button-primary button-large"
+            onClick={() => setAuthView("register")}
+          >
+            Buat akun gratis <Icon name="arrow" />
+          </button>
+        </section>
+        <footer className="landing-footer">
+          <a className="brand" href="#top">
+            <span className="brand-icon">
+              <Icon name="logo" />
+            </span>
+            <span>
+              DocuMind <b>ID</b>
+            </span>
+          </a>
+          <span>
+            © {new Date().getFullYear()} DocuMind ID · Tanya jawab dokumen PDF
+          </span>
+        </footer>
+      </main>
+    );
+  }
+
+  const nav: { id: View; label: string; icon: string }[] = [
+    { id: "dashboard", label: "Dashboard", icon: "dashboard" },
+    { id: "search", label: "Cari Dokumen", icon: "search" },
+    { id: "chat", label: "Chat dengan AI", icon: "chat" },
+  ];
+  return (
+    <main
+      className={`workspace ${sidebarOpen ? "sidebar-expanded" : "sidebar-collapsed"}`}
+    >
+      <aside className="sidebar">
+        <div className="sidebar-brand-row">
+          <a
+            className="brand"
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setView("dashboard");
+            }}
+          >
+            <span className="brand-icon">
+              <Icon name="logo" />
+            </span>
+            {sidebarOpen && (
+              <span>
+                DocuMind <b>ID</b>
+              </span>
             )}
-
-            <div className="mt-6 rounded-2xl bg-[#F3EFDF] p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#004B08]">
-                Alur pemrosesan
-              </p>
-              <div className="mt-3 space-y-3 text-sm text-[#1F2A1F]/70">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-xs font-semibold">
-                    1
-                  </span>
-                  Unggah dan simpan PDF
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-xs font-semibold">
-                    2
-                  </span>
-                  Ekstraksi teks dan embedding
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-xs font-semibold">
-                    3
-                  </span>
-                  Cari kutipan yang relevan
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="rounded-[2rem] border border-[#1F2A1F]/10 bg-white/65 p-6 shadow-sm backdrop-blur sm:p-8">
-            <div className="flex flex-wrap items-start justify-between gap-4">
-              <div className="flex items-start gap-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#004B08]/10 text-[#004B08]">
-                  <Icon name="file" />
-                </span>
-                <div>
-                  <h2 className="text-xl font-semibold">Dokumen saya</h2>
-                  <p className="mt-1 text-sm text-[#1F2A1F]/60">
-                    PDF yang tersimpan di akunmu.
-                  </p>
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={() => void refreshDocuments()}
-                disabled={documentsLoading}
-                className="rounded-full border border-[#1F2A1F]/15 px-4 py-2 text-xs font-semibold transition hover:bg-white disabled:opacity-50"
-              >
-                {documentsLoading ? "Memuat..." : "Refresh"}
-              </button>
-            </div>
-
-            <div className="mt-6 space-y-3">
-              {!documentsLoading && documents.length === 0 ? (
-                <div className="rounded-2xl bg-[#F3EFDF]/80 px-5 py-10 text-center">
-                  <Icon
-                    name="file"
-                    className="mx-auto h-8 w-8 text-[#004B08]/50"
-                  />
-                  <p className="mt-3 text-sm font-semibold">
-                    Belum ada dokumen
-                  </p>
-                  <p className="mt-1 text-xs text-[#1F2A1F]/55">
-                    Unggah PDF pertama untuk memulai.
-                  </p>
-                </div>
-              ) : (
-                documents.map((document) => (
-                  <article
-                    key={document.id}
-                    className="rounded-2xl border border-[#1F2A1F]/10 bg-white/70 p-4"
-                  >
-                    <div className="flex items-start gap-3">
-                      <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#F3EFDF] text-[#004B08]">
-                        <Icon name="file" />
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <h3 className="break-words text-sm font-semibold leading-5">
-                          {document.filename}
-                        </h3>
-                        <p className="mt-1 text-xs text-[#1F2A1F]/55">
-                          {formatFileSize(document.file_size_bytes)} ·{" "}
-                          {document.page_count == null
-                            ? "Jumlah halaman belum tersedia"
-                            : `${document.page_count} halaman`}{" "}
-                          · {formatDate(document.created_at)}
-                        </p>
-                        <div className="mt-3 flex flex-wrap items-center gap-2">
-                          <span
-                            className={`rounded-full px-3 py-1 text-xs font-medium ${statusClass(document.status)}`}
-                          >
-                            {statusLabel(document.status)}
-                          </span>
-                          {document.status === "ready" && (
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setSelectedDocument(document.id);
-                                globalThis.document
-                                  .getElementById("search-query")
-                                  ?.focus();
-                              }}
-                              className="rounded-full bg-[#004B08]/8 px-3 py-1 text-xs font-semibold text-[#004B08] hover:bg-[#004B08]/15"
-                            >
-                              Cari di dokumen ini
-                            </button>
-                          )}
-                          <button
-                            type="button"
-                            onClick={() => void handleDelete(document)}
-                            className="ml-auto inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium text-red-700 transition hover:bg-red-50"
-                          >
-                            <Icon name="trash" className="h-3.5 w-3.5" />
-                            Hapus
-                          </button>
-                        </div>
-                        {document.error_message && (
-                          <p className="mt-2 break-words text-xs text-red-700">
-                            {document.error_message}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </article>
-                ))
-              )}
-            </div>
-          </section>
+          </a>
+          <button
+            className="icon-button sidebar-toggle"
+            aria-label={sidebarOpen ? "Ciutkan sidebar" : "Buka sidebar"}
+            title={sidebarOpen ? "Ciutkan sidebar" : "Buka sidebar"}
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+          >
+            <Icon name="menu" />
+          </button>
         </div>
 
-        <section className="mt-8 rounded-[2rem] border border-[#1F2A1F]/10 bg-white/65 p-6 shadow-sm backdrop-blur sm:p-8">
-          <div className="flex items-start gap-4">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#C99A3D]/20 text-[#004B08]">
-              <Icon name="search" />
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold">Cari isi dokumen</h2>
-              <p className="mt-1 text-sm leading-6 text-[#1F2A1F]/60">
-                Ajukan pertanyaan atau masukkan kata kunci untuk menemukan
-                kutipan yang relevan dari dokumenmu.
-              </p>
-            </div>
-          </div>
-
-          <form onSubmit={handleSearch} className="mt-6">
-            <div className="mb-5 grid grid-cols-2 gap-2 rounded-2xl bg-[#1F2A1F]/5 p-1.5">
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchMode("search");
-                  setSearchResponse(null);
-                  setAskResponse(null);
-                  setSearchError("");
-                }}
-                className={`flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-medium transition ${
-                  searchMode === "search"
-                    ? "bg-white text-[#004B08] shadow-sm"
-                    : "text-[#1F2A1F]/60 hover:text-[#1F2A1F]"
-                }`}
-              >
-                <Icon name="search" className="h-4 w-4" />
-                Semantic Search
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchMode("ask");
-                  setSearchResponse(null);
-                  setAskResponse(null);
-                  setSearchError("");
-                }}
-                className={`flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-medium transition ${
-                  searchMode === "ask"
-                    ? "bg-[#004B08] text-white shadow-sm"
-                    : "text-[#1F2A1F]/60 hover:text-[#1F2A1F]"
-                }`}
-              >
-                <Icon name="spark" className="h-4 w-4" />
-                Ask AI
-              </button>
-            </div>
-
-            <label
-              htmlFor="search-query"
-              className="mb-2 block text-sm font-medium"
+        <nav className="sidebar-nav">
+          {nav.map((item) => (
+            <button
+              key={item.id}
+              className={`nav-item ${view === item.id ? "active" : ""}`}
+              onClick={() => setView(item.id)}
+              title={!sidebarOpen ? item.label : undefined}
             >
-              {searchMode === "ask"
-                ? "Tanyakan sesuatu tentang dokumen"
-                : "Pertanyaan atau kata kunci"}
-            </label>
-            <textarea
-              id="search-query"
-              value={searchQuery}
-              onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="Contoh: Apa tujuan utama dokumen ini?"
-              rows={3}
-              className="w-full resize-y rounded-2xl border border-[#1F2A1F]/15 bg-white/80 px-4 py-3 text-sm leading-6 outline-none transition placeholder:text-[#1F2A1F]/35 focus:border-[#004B08] focus:ring-4 focus:ring-[#004B08]/10"
-            />
-            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-              <div className="min-w-0 flex-1">
-                <label
-                  htmlFor="document-filter"
-                  className="mb-2 block text-xs font-medium text-[#1F2A1F]/65"
-                >
-                  Cakupan pencarian
-                </label>
-                <select
-                  id="document-filter"
-                  value={selectedDocument}
-                  onChange={(event) => setSelectedDocument(event.target.value)}
-                  className="h-11 w-full rounded-full border border-[#1F2A1F]/15 bg-white px-4 text-sm outline-none focus:border-[#004B08]"
-                >
-                  <option value="all">Semua dokumen siap dicari</option>
-                  {readyDocuments.map((document) => (
-                    <option key={document.id} value={document.id}>
-                      {document.filename}
-                    </option>
-                  ))}
-                </select>
+              <Icon name={item.icon} />
+              {sidebarOpen && <span>{item.label}</span>}
+            </button>
+          ))}
+        </nav>
+        <div className="sidebar-bottom">
+          <div
+            className={`account-row ${sidebarOpen ? "" : "account-compact"}`}
+          >
+            <span className="account-avatar">
+              {userEmail.slice(0, 1).toUpperCase()}
+            </span>
+            {sidebarOpen && (
+              <div className="account-info">
+                <b>Akun saya</b>
+                <span title={userEmail}>{userEmail}</span>
               </div>
-              <button
-                type="submit"
-                disabled={searchLoading || readyDocuments.length === 0}
-                className="mt-auto inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#004B08] px-6 text-sm font-semibold text-white transition hover:bg-[#003906] disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                <Icon
-                  name={searchMode === "ask" ? "spark" : "search"}
-                  className="h-4 w-4"
-                />
-                {searchLoading
-                  ? searchMode === "ask"
-                    ? "Menyiapkan jawaban..."
-                    : "Mencari..."
-                  : searchMode === "ask"
-                    ? "Tanyakan ke AI"
-                    : "Cari kutipan"}
-              </button>
-            </div>
-            {readyDocuments.length === 0 && (
-              <p className="mt-3 text-xs text-[#1F2A1F]/55">
-                Proses setidaknya satu dokumen hingga statusnya “Siap dicari”
-                sebelum memulai pencarian.
-              </p>
             )}
-          </form>
-
-          {askResponse && (
-            <div className="mt-6 space-y-5">
-              <div className="rounded-3xl border border-[#004B08]/15 bg-white p-5 sm:p-7">
-                <div className="flex items-center gap-2 text-sm font-semibold text-[#004B08]">
-                  <Icon name="spark" className="h-5 w-5" />
-                  Jawaban AI
+          </div>
+          <button
+            className="nav-item logout-item"
+            onClick={() => void logout()}
+            disabled={logoutLoading}
+            title={!sidebarOpen ? "Logout" : undefined}
+          >
+            <Icon name="logout" />
+            {sidebarOpen && (
+              <span>{logoutLoading ? "Keluar..." : "Logout"}</span>
+            )}
+          </button>
+        </div>
+      </aside>
+      <section className="workspace-main">
+        <div className="page-container">
+          {view === "dashboard" && (
+            <>
+              <div className="page-heading">
+                <div>
+                  <h1>Selamat datang kembali! 👋</h1>
+                  <p>Kelola dokumen dan temukan jawaban dari satu tempat.</p>
                 </div>
-
-                <div className="mt-4 whitespace-pre-wrap text-sm leading-7 text-[#1F2A1F]/85">
-                  {askResponse.answer}
-                </div>
-
-                <p className="mt-5 border-t border-[#1F2A1F]/10 pt-4 text-xs leading-5 text-[#1F2A1F]/55">
-                  Jawaban dibuat berdasarkan bagian dokumen yang ditemukan.
-                  Periksa sumber berikut untuk memverifikasi informasi.
-                </p>
               </div>
-
-              <div className="rounded-3xl border border-[#1F2A1F]/10 bg-[#F3EFDF]/60 p-5 sm:p-7">
-                <div className="flex items-center gap-2">
-                  <Icon name="book" className="h-5 w-5 text-[#004B08]" />
-                  <h3 className="font-semibold text-[#1F2A1F]">
-                    Sumber jawaban ({askResponse.sources.length})
-                  </h3>
+              <section className="upload-panel">
+                <div className="upload-panel-copy">
+                  <span className="large-feature-icon">
+                    <Icon name="upload" size={25} />
+                  </span>
+                  <div>
+                    <h2>Unggah dokumen PDF</h2>
+                    <p>
+                      Tambahkan dokumen untuk mulai mencari isi dan mengajukan
+                      pertanyaan.
+                    </p>
+                    <small>PDF · Maksimal 10 MB per file</small>
+                  </div>
                 </div>
-
-                {askResponse.sources.length === 0 ? (
-                  <p className="mt-4 text-sm leading-6 text-[#1F2A1F]/60">
-                    Tidak ada sumber yang dikembalikan untuk jawaban ini.
-                  </p>
+                <button
+                  className="button button-primary"
+                  onClick={() => fileRef.current?.click()}
+                  disabled={uploading}
+                >
+                  <Icon name="upload" size={17} />
+                  {uploading ? "Mengunggah..." : "Pilih PDF"}
+                </button>
+                <input
+                  ref={fileRef}
+                  type="file"
+                  accept="application/pdf,.pdf"
+                  hidden
+                  onChange={uploadFile}
+                />
+              </section>
+              {uploadMessage && <p className="notice">{uploadMessage}</p>}
+              {docError && <p className="notice notice-error">{docError}</p>}
+              <section className="section-block">
+                <div className="section-title-row">
+                  <div>
+                    <h2>Dokumen terbaru</h2>
+                    <p>Dokumen yang tersimpan di ruang kerjamu.</p>
+                  </div>
+                  <span className="count-pill">{documents.length} dokumen</span>
+                </div>
+                {docsLoading ? (
+                  <div className="empty-state">Memuat dokumen...</div>
+                ) : documents.length === 0 ? (
+                  <div className="empty-state">
+                    <span className="empty-icon">
+                      <Icon name="file" size={25} />
+                    </span>
+                    <h3>Belum ada dokumen</h3>
+                    <p>
+                      Unggah PDF pertamamu untuk mulai menggunakan pencarian dan
+                      chat AI.
+                    </p>
+                    <button
+                      className="button button-secondary"
+                      onClick={() => fileRef.current?.click()}
+                    >
+                      Unggah PDF
+                    </button>
+                  </div>
                 ) : (
-                  <div className="mt-4 space-y-3">
-                    {askResponse.sources.map((source, index) => (
-                      <article
-                        key={`${source.document_id}-${source.page_number}-${index}`}
-                        className="rounded-2xl border border-[#1F2A1F]/10 bg-white p-4"
-                      >
-                        <div className="flex flex-wrap items-center justify-between gap-2">
-                          <span className="text-sm font-semibold text-[#1F2A1F]">
-                            {source.filename}
-                          </span>
-                          <span className="rounded-full bg-[#004B08]/8 px-3 py-1 text-xs font-medium text-[#004B08]">
-                            Halaman {source.page_number}
+                  <div className="document-list">
+                    {documents.map((doc) => (
+                      <article className="document-row" key={doc.id}>
+                        <span className="pdf-icon">PDF</span>
+                        <div className="document-main">
+                          <b>{doc.filename}</b>
+                          <span>
+                            {formatBytes(doc.file_size_bytes)}
+                            {doc.page_count
+                              ? ` · ${doc.page_count} halaman`
+                              : ""}{" "}
+                            · {dateLabel(doc.created_at)}
                           </span>
                         </div>
-
-                        <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-[#1F2A1F]/70">
-                          {source.content}
-                        </p>
+                        <span className={`status-pill status-${doc.status}`}>
+                          {doc.status === "ready"
+                            ? "Siap dicari"
+                            : doc.status === "failed"
+                              ? "Gagal diproses"
+                              : doc.status === "processing"
+                                ? "Diproses"
+                                : doc.status === "deleting"
+                                  ? "Menghapus"
+                                  : "Menunggu"}
+                        </span>
+                        <div className="document-actions">
+                          <button
+                            className="button button-small button-secondary"
+                            disabled={doc.status !== "ready"}
+                            onClick={() => {
+                              setSearchDoc(doc.id);
+                              setSearchQuery("");
+                              setSearchResult(null);
+                              setSearchAnswer(null);
+                              setView("search");
+                            }}
+                          >
+                            Cari
+                          </button>
+                          <button
+                            className="button button-small button-secondary"
+                            disabled={doc.status !== "ready"}
+                            onClick={() => {
+                              void selectChatDocument(doc.id);
+                              setView("chat");
+                            }}
+                          >
+                            Chat
+                          </button>
+                          <button
+                            className="icon-button danger-icon"
+                            title={`Hapus ${doc.filename}`}
+                            aria-label={`Hapus ${doc.filename}`}
+                            onClick={() => void removeDocument(doc)}
+                          >
+                            <Icon name="trash" size={17} />
+                          </button>
+                        </div>
                       </article>
                     ))}
                   </div>
                 )}
-              </div>
-            </div>
+              </section>
+            </>
           )}
-
-          {searchError && (
-            <p
-              role="alert"
-              className="mt-5 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700"
-            >
-              {searchError}
-            </p>
-          )}
-
-          {searchResponse && (
-            <div className="mt-8">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#1F2A1F]/10 pb-4">
+          {view === "search" && (
+            <>
+              <div className="page-heading">
                 <div>
-                  <h3 className="font-semibold">Kutipan yang ditemukan</h3>
-                  <p className="mt-1 text-xs text-[#1F2A1F]/55">
-                    Hasil untuk: “{searchResponse.query}”
+                  <h1>Cari dokumen</h1>
+                  <p>
+                    Gunakan pencarian untuk satu pertanyaan dan lihat jawaban
+                    beserta kutipan halaman yang mendukungnya.
                   </p>
                 </div>
-                <span className="rounded-full bg-[#004B08]/8 px-3 py-1.5 text-xs font-semibold text-[#004B08]">
-                  {searchResponse.total_results} hasil
-                </span>
               </div>
-
-              {searchResponse.results.length === 0 ? (
-                <div className="mt-5 rounded-2xl bg-[#F3EFDF]/80 px-5 py-8 text-center">
-                  <p className="text-sm font-semibold">
-                    Belum ada kutipan yang cocok
-                  </p>
-                  <p className="mt-1 text-xs text-[#1F2A1F]/55">
-                    Coba pertanyaan lain atau unggah dokumen yang relevan.
-                  </p>
-                </div>
-              ) : (
-                <div className="mt-5 grid gap-4">
-                  {searchResponse.results.map((result) => (
-                    <article
-                      key={result.chunk_id}
-                      className="rounded-2xl border border-[#1F2A1F]/10 bg-white/75 p-5"
+              <section className="content-card">
+                <form className="search-form" onSubmit={submitSearch}>
+                  <label>
+                    Dokumen sumber
+                    <select
+                      value={searchDoc}
+                      onChange={(e) => setSearchDoc(e.target.value)}
                     >
-                      <div className="flex flex-wrap items-center justify-between gap-2">
-                        <p className="flex min-w-0 items-center gap-2 text-sm font-semibold">
-                          <Icon
-                            name="file"
-                            className="h-4 w-4 shrink-0 text-[#004B08]"
-                          />
-                          <span className="break-words">{result.filename}</span>
-                        </p>
-                        <span className="rounded-full bg-[#C99A3D]/15 px-3 py-1 text-xs font-semibold text-[#725014]">
-                          Halaman {result.page_number}
-                        </span>
-                      </div>
-                      <p className="mt-4 whitespace-pre-wrap break-words text-sm leading-7 text-[#1F2A1F]/80">
-                        {result.content}
-                      </p>
-                      <p className="mt-4 border-t border-[#1F2A1F]/8 pt-3 text-xs text-[#1F2A1F]/50">
-                        Skor kemiripan semantik: {result.similarity.toFixed(3)}
-                      </p>
-                    </article>
-                  ))}
-                </div>
+                      <option value="all">Semua dokumen siap dicari</option>
+                      {readyDocs.map((d) => (
+                        <option value={d.id} key={d.id}>
+                          {d.filename}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
+                    Pertanyaan atau kata kunci
+                    <div className="input-with-icon">
+                      <Icon name="search" />
+                      <input
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Contoh: Apa tujuan utama dokumen ini?"
+                      />
+                    </div>
+                  </label>
+                  <button
+                    className="button button-primary"
+                    disabled={searchLoading || readyDocs.length === 0}
+                  >
+                    {searchLoading ? "Mencari..." : "Cari jawaban"}
+                    <Icon name="arrow" size={17} />
+                  </button>
+                </form>
+                {readyDocs.length === 0 && (
+                  <p className="muted small-text">
+                    Unggah dan proses PDF dari Dashboard terlebih dahulu.
+                  </p>
+                )}
+                {searchError && (
+                  <p className="notice notice-error">{searchError}</p>
+                )}
+              </section>
+              {searchAnswer && (
+                <section className="answer-panel">
+                  <div className="answer-title">
+                    <span className="answer-avatar">
+                      <Icon name="spark" />
+                    </span>
+                    <div>
+                      <h2>Ringkasan jawaban</h2>
+                      <p>Jawaban berdasarkan sumber dokumen yang relevan.</p>
+                    </div>
+                    <button
+                      className="icon-button"
+                      title="Salin jawaban"
+                      onClick={() => copyText(searchAnswer.answer)}
+                    >
+                      <Icon name="copy" />
+                    </button>
+                  </div>
+                  <p className="answer-text">{searchAnswer.answer}</p>
+                </section>
               )}
-              <p className="mt-5 rounded-2xl bg-[#F3EFDF] px-4 py-3 text-xs leading-6 text-[#1F2A1F]/65">
-                Catatan: hasil ini merupakan kutipan yang ditemukan melalui
-                pencarian semantik, bukan jawaban yang disusun oleh LLM. Periksa
-                kutipan dan halaman sumber sebelum menarik kesimpulan.
-              </p>
-            </div>
-          )}
-        </section>
+              {searchResult && (
+                <section className="section-block">
+                  <div className="section-title-row">
+                    <div>
+                      <h2>Sumber relevan</h2>
+                      <p>
+                        {searchResult.results.length
+                          ? `${searchResult.results.length} kutipan yang cocok dengan sumber jawaban.`
+                          : "Tidak ditemukan kutipan yang cukup relevan untuk jawaban ini."}
+                      </p>
+                    </div>
+                  </div>
+                  {searchResult.results.length > 0 ? (
+                    <div className="source-list">
+                      {searchResult.results.map((r, i) => (
+                        <article
+                          className="source-card"
+                          key={`${r.chunk_id}-${i}`}
+                        >
+                          <div className="source-card-head">
+                            <span className="source-number">{i + 1}</span>
+                            <div>
+                              <b>{r.filename}</b>
+                              <span>Halaman {r.page_number}</span>
+                            </div>
+                            <div className="source-card-actions">
+                              <button
+                                type="button"
+                                className="icon-button"
+                                title="Salin kutipan"
+                                onClick={() => copyText(r.content)}
+                              >
+                                <Icon name="copy" size={17} />
+                              </button>
 
-        <footer className="flex flex-col gap-2 py-8 text-center text-xs text-[#1F2A1F]/45 sm:flex-row sm:items-center sm:justify-between sm:text-left">
-          <span>DocuMind ID · Evidence-first document search</span>
-          <span>Unggah dengan bijak. Verifikasi sumbernya.</span>
-        </footer>
-      </div>
+                              <button
+                                type="button"
+                                className="ask-ai-link"
+                                onClick={() => {
+                                  void selectChatDocument(r.document_id);
+                                  setChatQuery(
+                                    `Jelaskan kutipan dari halaman ${r.page_number} pada dokumen "${r.filename}":\n\n"${r.content}"`,
+                                  );
+                                  setView("chat");
+                                }}
+                              >
+                                Tanyakan ke AI <Icon name="arrow" size={14} />
+                              </button>
+                            </div>
+                          </div>
+                          <p>{r.content}</p>
+                        </article>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="empty-state compact-empty">
+                      <p>
+                        Belum ada sumber yang cukup relevan. Coba ubah
+                        pertanyaan atau pilih dokumen tertentu.
+                      </p>
+                    </div>
+                  )}
+                </section>
+              )}
+            </>
+          )}
+          {view === "chat" && (
+            <>
+              <div className="page-heading">
+                <div>
+                  <h1>Chat dengan AI</h1>
+                  <p>
+                    Diskusikan isi satu dokumen secara bertahap. Pertanyaan dan
+                    jawaban akan tersimpan dalam riwayat.
+                  </p>
+                </div>
+              </div>
+              <div className="chat-layout">
+                <aside className="chat-history-panel">
+                  <div className="history-heading">
+                    <h2>Riwayat chat</h2>
+                    <span className="count-pill">{conversations.length}</span>
+                  </div>
+                  <label className="history-doc-label">
+                    Dokumen
+                    <select
+                      value={chatDoc}
+                      onChange={(e) => void selectChatDocument(e.target.value)}
+                    >
+                      <option value="">Pilih dokumen...</option>
+                      {readyDocs.map((d) => (
+                        <option value={d.id} key={d.id}>
+                          {d.filename}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  {chatDoc && (
+                    <button
+                      className="button button-secondary button-wide new-chat-button"
+                      onClick={() => {
+                        setConversationId("");
+                        setMessages([]);
+                        setChatQuery("");
+                        setChatError("");
+                      }}
+                    >
+                      ＋ Percakapan baru
+                    </button>
+                  )}
+                  {!chatDoc ? (
+                    <p className="muted small-text history-hint">
+                      Pilih dokumen untuk melihat riwayat chat.
+                    </p>
+                  ) : chatLoadingHistory ? (
+                    <p className="muted small-text">Memuat riwayat...</p>
+                  ) : conversations.length === 0 ? (
+                    <p className="muted small-text history-hint">
+                      Belum ada riwayat untuk dokumen ini.
+                    </p>
+                  ) : (
+                    <div className="history-list">
+                      {conversations.map((c) => (
+                        <button
+                          key={c.id}
+                          className={`history-item ${conversationId === c.id ? "active" : ""}`}
+                          onClick={() => void openConversation(c.id)}
+                        >
+                          <span className="history-item-icon">
+                            <Icon name="chat" size={16} />
+                          </span>
+                          <span>
+                            <b>{c.title || "Percakapan baru"}</b>
+                            <small>{dateLabel(c.updated_at)}</small>
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </aside>
+                <section className="chat-panel">
+                  <div className="chat-panel-head">
+                    <span className="answer-avatar">
+                      <Icon name="spark" />
+                    </span>
+                    <div>
+                      <b>DocuMind AI</b>
+                      <span>
+                        {chatDoc
+                          ? readyDocs.find((d) => d.id === chatDoc)?.filename
+                          : "Pilih dokumen untuk memulai"}
+                      </span>
+                    </div>
+                    <span className="online-dot" title="Asisten siap" />
+                  </div>
+                  <div className="chat-messages">
+                    {chatLoadingHistory ? (
+                      <div className="empty-state">Memuat percakapan...</div>
+                    ) : messages.length === 0 ? (
+                      <div className="chat-empty">
+                        <span className="empty-icon">
+                          <Icon name="chat" size={26} />
+                        </span>
+                        <h3>Mulai percakapan</h3>
+                        <p>
+                          Pilih dokumen di panel kiri, lalu tulis pertanyaanmu.
+                          Pesan akan muncul di sini setelah dikirim.
+                        </p>
+                        <div className="suggestion-row">
+                          {[
+                            "Apa ringkasan dokumen ini?",
+                            "Apa poin-poin pentingnya?",
+                          ].map((q) => (
+                            <button
+                              key={q}
+                              className="suggestion-chip"
+                              disabled={!chatDoc}
+                              onClick={() => setChatQuery(q)}
+                            >
+                              {q}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      messages.map((m) => (
+                        <article
+                          className={`message-row ${m.role === "user" ? "message-user" : "message-ai"}`}
+                          key={m.id}
+                        >
+                          <div
+                            className={`message-avatar ${m.role === "user" ? "user-avatar" : ""}`}
+                          >
+                            {m.role === "user" ? (
+                              userEmail.slice(0, 1).toUpperCase()
+                            ) : (
+                              <Icon name="spark" size={16} />
+                            )}
+                          </div>
+                          <div className="message-content">
+                            <div className="message-meta">
+                              <b>
+                                {m.role === "user" ? "Kamu" : "DocuMind AI"}
+                              </b>
+                              <span>
+                                {new Date(m.created_at).toLocaleTimeString(
+                                  "id-ID",
+                                  { hour: "2-digit", minute: "2-digit" },
+                                )}
+                              </span>
+                              <button
+                                className="copy-message"
+                                title={`Salin ${m.role === "user" ? "pertanyaan" : "jawaban"}`}
+                                onClick={() => copyText(m.content)}
+                              >
+                                <Icon name="copy" size={15} /> Salin
+                              </button>
+                            </div>
+                            <div className="message-bubble">
+                              <p>{m.content}</p>
+                            </div>
+                            {m.role === "assistant" &&
+                              m.sources?.length > 0 && (
+                                <div className="message-sources">
+                                  <b>Sumber</b>
+                                  {m.sources.map((s, i) => (
+                                    <div
+                                      className="message-source"
+                                      key={`${s.chunk_id}-${i}`}
+                                    >
+                                      <span>Halaman {s.page_number}</span>
+                                      <p>{s.quote_text}</p>
+                                      <button
+                                        className="copy-message"
+                                        onClick={() => copyText(s.quote_text)}
+                                      >
+                                        <Icon name="copy" size={14} /> Salin
+                                        kutipan
+                                      </button>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                          </div>
+                        </article>
+                      ))
+                    )}
+                    {chatLoading && (
+                      <div className="typing-indicator">
+                        <span />
+                        <span />
+                        <span /> AI sedang menyiapkan jawaban...
+                      </div>
+                    )}
+                  </div>
+                  <form className="chat-compose" onSubmit={sendChat}>
+                    <textarea
+                      value={chatQuery}
+                      onChange={(e) => setChatQuery(e.target.value)}
+                      placeholder={
+                        chatDoc
+                          ? "Tulis pertanyaan tentang dokumen ini..."
+                          : "Pilih dokumen terlebih dahulu"
+                      }
+                      disabled={!chatDoc || chatLoading}
+                      rows={2}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && !e.shiftKey) {
+                          e.preventDefault();
+                          e.currentTarget.form?.requestSubmit();
+                        }
+                      }}
+                    />
+                    <button
+                      className="button button-primary send-button"
+                      disabled={!chatDoc || !chatQuery.trim() || chatLoading}
+                      aria-label="Kirim pertanyaan"
+                    >
+                      <Icon name="arrow" />
+                    </button>
+                  </form>
+                  {chatError && (
+                    <p className="notice notice-error chat-error">
+                      {chatError}
+                    </p>
+                  )}
+                </section>
+              </div>
+            </>
+          )}
+        </div>
+      </section>
+      {confirmDelete && (
+        <div
+          className="modal-backdrop"
+          role="presentation"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) setConfirmDelete(null);
+          }}
+        >
+          <section
+            className="confirm-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="delete-title"
+          >
+            <span className="modal-icon">
+              <Icon name="trash" size={22} />
+            </span>
+            <h2 id="delete-title">Hapus dokumen?</h2>
+            <p>
+              Dokumen <b>{confirmDelete.filename}</b> dan seluruh percakapan
+              terkait akan dihapus. Tindakan ini tidak dapat dibatalkan.
+            </p>
+            <div className="modal-actions">
+              <button
+                className="button button-secondary"
+                onClick={() => setConfirmDelete(null)}
+              >
+                Batal
+              </button>
+              <button
+                className="button button-danger"
+                onClick={() => void confirmRemoveDocument()}
+              >
+                Ya, hapus dokumen
+              </button>
+            </div>
+          </section>
+        </div>
+      )}
     </main>
   );
 }
