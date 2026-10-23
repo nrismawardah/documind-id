@@ -1,0 +1,272 @@
+﻿[
+  {
+    "id": "D01",
+    "category": "direct_fact",
+    "question": "Berapa total pagu anggaran Program Kota Cakrawala tahun 2025?",
+    "expected_answer": "Rp480.000.000.",
+    "gold_pages": [5, 13],
+    "expected_facts": ["Rp480.000.000"],
+    "answerable": true
+  },
+  {
+    "id": "D02",
+    "category": "direct_fact",
+    "question": "Berapa pagu anggaran untuk pelatihan digital?",
+    "expected_answer": "Rp120.000.000.",
+    "gold_pages": [5],
+    "expected_facts": ["Pelatihan digital", "Rp120.000.000"],
+    "answerable": true
+  },
+  {
+    "id": "D03",
+    "category": "direct_fact",
+    "question": "Berapa besar dana cadangan program?",
+    "expected_answer": "Rp60.000.000.",
+    "gold_pages": [5],
+    "expected_facts": ["Dana cadangan", "Rp60.000.000"],
+    "answerable": true
+  },
+  {
+    "id": "D04",
+    "category": "direct_fact",
+    "question": "Pengeluaran di atas berapa rupiah yang memerlukan dua pemeriksa?",
+    "expected_answer": "Pengeluaran di atas Rp10.000.000 memerlukan dua pemeriksa.",
+    "gold_pages": [5, 13],
+    "expected_facts": ["Di atas Rp10.000.000", "Dua pemeriksa"],
+    "answerable": true
+  },
+  {
+    "id": "D05",
+    "category": "direct_fact",
+    "question": "Kapan rencana kerja tahunan harus disetujui paling lambat?",
+    "expected_answer": "20 Januari 2025.",
+    "gold_pages": [6],
+    "expected_facts": ["20 Januari 2025"],
+    "answerable": true
+  },
+  {
+    "id": "D06",
+    "category": "direct_fact",
+    "question": "Kapan batas akhir penyerahan laporan akhir program?",
+    "expected_answer": "15 Januari 2026.",
+    "gold_pages": [6, 13],
+    "expected_facts": ["15 Januari 2026"],
+    "answerable": true
+  },
+  {
+    "id": "D07",
+    "category": "direct_fact",
+    "question": "Berapa jumlah maksimal peserta dalam satu kelas literasi digital?",
+    "expected_answer": "Maksimal 20 peserta.",
+    "gold_pages": [7, 13],
+    "expected_facts": ["20 peserta"],
+    "answerable": true
+  },
+  {
+    "id": "D08",
+    "category": "direct_fact",
+    "question": "Berapa lama durasi setiap kelas literasi digital?",
+    "expected_answer": "120 menit.",
+    "gold_pages": [7, 13],
+    "expected_facts": ["120 menit"],
+    "answerable": true
+  },
+  {
+    "id": "D09",
+    "category": "direct_fact",
+    "question": "Berapa usia minimum untuk mengikuti kelas literasi digital umum?",
+    "expected_answer": "17 tahun.",
+    "gold_pages": [7, 13],
+    "expected_facts": ["Minimal 17 tahun"],
+    "answerable": true
+  },
+  {
+    "id": "D10",
+    "category": "direct_fact",
+    "question": "Apa alamat email program Kota Cakrawala?",
+    "expected_answer": "layanan@cakrawala.example.",
+    "gold_pages": [12],
+    "expected_facts": ["layanan@cakrawala.example"],
+    "answerable": true
+  },
+  {
+    "id": "M01",
+    "category": "multi_fact",
+    "question": "Apa saja empat wilayah administratif yang tercakup dalam program?",
+    "expected_answer": "Utara, Selatan, Timur, dan Barat.",
+    "gold_pages": [2],
+    "expected_facts": ["Utara", "Selatan", "Timur", "Barat"],
+    "answerable": true
+  },
+  {
+    "id": "M02",
+    "category": "multi_fact",
+    "question": "Sebutkan jam layanan reguler dan hari berlakunya.",
+    "expected_answer": "Pukul 08.30–15.30 pada hari kerja, yaitu Senin sampai Jumat, tidak termasuk hari libur kalender program.",
+    "gold_pages": [2, 4],
+    "expected_facts": ["08.30–15.30", "Senin sampai Jumat", "Tidak termasuk hari libur"],
+    "answerable": true
+  },
+  {
+    "id": "M03",
+    "category": "multi_fact",
+    "question": "Apa saja empat modul kelas digital dan berapa durasi masing-masing?",
+    "expected_answer": "D-01 Dasar perangkat dan berkas: 30 menit; D-02 Keamanan akun: 30 menit; D-03 Layanan publik daring: 40 menit; D-04 Latihan dan umpan balik: 20 menit.",
+    "gold_pages": [7],
+    "expected_facts": ["D-01: 30 menit", "D-02: 30 menit", "D-03: 40 menit", "D-04: 20 menit"],
+    "answerable": true
+  },
+  {
+    "id": "M04",
+    "category": "multi_fact",
+    "question": "Apa syarat nilai kelulusan internal kelas dan berapa soal yang dikerjakan setelah pelatihan?",
+    "expected_answer": "Peserta mengerjakan lima soal setelah pelatihan dan harus menjawab minimal empat soal dengan benar untuk memenuhi nilai kelulusan internal.",
+    "gold_pages": [7],
+    "expected_facts": ["Lima soal akhir", "Minimal 4 jawaban benar dari 5"],
+    "answerable": true
+  },
+  {
+    "id": "M05",
+    "category": "multi_fact",
+    "question": "Data peserta apa yang boleh dikumpulkan dan data apa yang tidak diperlukan untuk mengikuti kelas?",
+    "expected_answer": "Data yang boleh dikumpulkan meliputi nama, rentang usia, wilayah, kontak yang diperlukan, status pendaftaran, dan catatan kehadiran. Nomor identitas resmi dan data keuangan pribadi tidak diperlukan.",
+    "gold_pages": [9],
+    "expected_facts": ["Nama", "Rentang usia", "Wilayah", "Kontak yang diperlukan", "Status pendaftaran", "Catatan kehadiran", "Nomor identitas resmi tidak diperlukan", "Data keuangan pribadi tidak diperlukan"],
+    "answerable": true
+  },
+  {
+    "id": "M06",
+    "category": "multi_fact",
+    "question": "Berapa lama data pendaftaran mentah disimpan dan apa yang dilakukan setelah masa retensi berakhir?",
+    "expected_answer": "Data disimpan selama 12 bulan setelah laporan akhir disetujui, lalu dihapus atau dianonimkan.",
+    "gold_pages": [9, 13],
+    "expected_facts": ["12 bulan setelah laporan akhir disetujui", "Dihapus atau dianonimkan"],
+    "answerable": true
+  },
+  {
+    "id": "M07",
+    "category": "multi_fact",
+    "question": "Bagaimana respons awal untuk masalah P1 dan apa yang harus dilakukan sebelum perbaikan permanen?",
+    "expected_answer": "Respons awal maksimal dua jam. Area harus diamankan sebelum perbaikan permanen, yang mengikuti penilaian teknis.",
+    "gold_pages": [8],
+    "expected_facts": ["Maksimal 2 jam", "Area diamankan sebelum perbaikan permanen", "Penilaian teknis"],
+    "answerable": true
+  },
+  {
+    "id": "M08",
+    "category": "multi_fact",
+    "question": "Bagaimana keluhan operasional yang belum selesai setelah dua hari kerja ditangani, dan bagaimana dugaan penyalahgunaan dana dieskalasikan?",
+    "expected_answer": "Keluhan operasional diteruskan ke sekretariat jika belum selesai setelah dua hari kerja. Dugaan penyalahgunaan dana langsung diteruskan kepada koordinator dan petugas evaluasi.",
+    "gold_pages": [3, 12],
+    "expected_facts": ["Keluhan operasional diteruskan ke sekretariat setelah dua hari kerja", "Penyalahgunaan dana langsung ke koordinator dan petugas evaluasi"],
+    "answerable": true
+  },
+  {
+    "id": "U01",
+    "category": "unanswerable",
+    "question": "Berapa nomor telepon darurat internal Program Kota Cakrawala?",
+    "expected_answer": "Nomor telepon darurat internal tidak ditetapkan dalam dokumen.",
+    "gold_pages": [12, 13],
+    "expected_facts": ["Nomor darurat internal tidak ditetapkan"],
+    "answerable": false
+  },
+  {
+    "id": "U02",
+    "category": "unanswerable",
+    "question": "Di mana alamat kantor pusat Program Kota Cakrawala?",
+    "expected_answer": "Alamat kantor pusat tidak dicantumkan dalam dokumen.",
+    "gold_pages": [12, 13],
+    "expected_facts": ["Alamat kantor pusat tidak dicantumkan"],
+    "answerable": false
+  },
+  {
+    "id": "U03",
+    "category": "unanswerable",
+    "question": "Siapa nama lengkap pejabat nyata yang menjadi koordinator program?",
+    "expected_answer": "Nama pejabat nyata tidak ditetapkan dalam dokumen.",
+    "gold_pages": [13],
+    "expected_facts": ["Nama pejabat nyata tidak ditetapkan"],
+    "answerable": false
+  },
+  {
+    "id": "U04",
+    "category": "unanswerable",
+    "question": "Berapa total anggaran yang benar-benar telah dibelanjakan sampai akhir tahun 2025?",
+    "expected_answer": "Realisasi akhir seluruh anggaran tidak tersedia dalam dokumen. Pagu Rp480.000.000 bukan bukti bahwa seluruh dana telah dibelanjakan.",
+    "gold_pages": [5, 13],
+    "expected_facts": ["Realisasi akhir tidak tersedia", "Pagu bukan bukti seluruh dana dibelanjakan"],
+    "answerable": false
+  },
+  {
+    "id": "U05",
+    "category": "unanswerable",
+    "question": "Berapa hasil aktual keseluruhan program selama tahun 2025?",
+    "expected_answer": "Hasil pelaksanaan tahunan tidak ditetapkan dalam dokumen. Dokumen hanya menyajikan contoh rekap simulasi triwulan kedua.",
+    "gold_pages": [11, 13],
+    "expected_facts": ["Hasil pelaksanaan tahunan tidak ditetapkan", "Rekap triwulan kedua adalah simulasi"],
+    "answerable": false
+  },
+  {
+    "id": "U06",
+    "category": "unanswerable",
+    "question": "Apa dasar hukum eksternal yang menjadi landasan program ini?",
+    "expected_answer": "Dasar hukum eksternal tidak ditetapkan dalam dokumen.",
+    "gold_pages": [13],
+    "expected_facts": ["Dasar hukum eksternal tidak ditetapkan"],
+    "answerable": false
+  },
+  {
+    "id": "T01",
+    "category": "ambiguity_trap",
+    "question": "Apakah seluruh pagu Rp480.000.000 sudah dibelanjakan?",
+    "expected_answer": "Tidak dapat disimpulkan. Rp480.000.000 adalah pagu anggaran, bukan bukti bahwa seluruh dana telah dibelanjakan.",
+    "gold_pages": [5, 13],
+    "expected_facts": ["Pagu Rp480.000.000", "Tidak membuktikan seluruh dana dibelanjakan"],
+    "answerable": false
+  },
+  {
+    "id": "T02",
+    "category": "ambiguity_trap",
+    "question": "Apakah data simulasi membuktikan wilayah tertentu memiliki hasil program terbaik?",
+    "expected_answer": "Tidak dapat disimpulkan karena dokumen tidak memberikan distribusi hasil per wilayah.",
+    "gold_pages": [11],
+    "expected_facts": ["Tidak ada distribusi hasil per wilayah", "Perbedaan antarwilayah tidak dapat disimpulkan"],
+    "answerable": false
+  },
+  {
+    "id": "T03",
+    "category": "ambiguity_trap",
+    "question": "Apakah peserta berusia 16 tahun boleh mengikuti kelas umum tanpa izin wali?",
+    "expected_answer": "Tidak. Kelas umum ditujukan bagi warga minimal 17 tahun. Peserta di bawah 17 tahun hanya dapat mengikuti kegiatan khusus remaja dengan izin wali.",
+    "gold_pages": [7, 13],
+    "expected_facts": ["Kelas umum minimal 17 tahun", "Di bawah 17 tahun hanya kegiatan khusus remaja dengan izin wali"],
+    "answerable": true
+  },
+  {
+    "id": "T04",
+    "category": "ambiguity_trap",
+    "question": "Bolehkah relawan memperbaiki kabel listrik terbuka jika ingin mempercepat penanganan P1?",
+    "expected_answer": "Tidak. Relawan tidak boleh melakukan perbaikan listrik. Untuk masalah P1, area harus diamankan dan perbaikan mengikuti penilaian teknis.",
+    "gold_pages": [8],
+    "expected_facts": ["Relawan tidak boleh memperbaiki listrik", "Area P1 diamankan", "Penilaian teknis"],
+    "answerable": true
+  },
+  {
+    "id": "T05",
+    "category": "ambiguity_trap",
+    "question": "Apakah target kepuasan minimal 85% sudah tercapai untuk keseluruhan tahun 2025?",
+    "expected_answer": "Tidak dapat dipastikan. Data simulasi triwulan kedua menunjukkan 68 dari 80 responden puas atau sangat puas, tetapi dokumen tidak menetapkan hasil tahunan.",
+    "gold_pages": [10, 11, 13],
+    "expected_facts": ["Target kepuasan minimal 85%", "68 dari 80 responden pada simulasi triwulan kedua", "Hasil tahunan tidak tersedia"],
+    "answerable": false
+  },
+  {
+    "id": "T06",
+    "category": "ambiguity_trap",
+    "question": "Apakah semua keluhan yang belum selesai dua hari kerja harus langsung dikirim kepada koordinator dan petugas evaluasi?",
+    "expected_answer": "Tidak. Keluhan operasional yang belum selesai setelah dua hari kerja diteruskan ke sekretariat. Dugaan penyalahgunaan dana langsung dieskalasikan kepada koordinator dan petugas evaluasi.",
+    "gold_pages": [3, 12],
+    "expected_facts": ["Keluhan operasional ke sekretariat setelah dua hari kerja", "Penyalahgunaan dana langsung ke koordinator dan petugas evaluasi"],
+    "answerable": true
+  }
+]
