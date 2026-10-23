@@ -1,0 +1,4249 @@
+[
+  {
+    "id": "D01",
+    "category": "direct_fact",
+    "question": "Berapa total pagu anggaran Program Kota Cakrawala tahun 2025?",
+    "answerable": true,
+    "gold_pages": [
+      5,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.831945488932999
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.831519246101379
+      },
+      {
+        "rank": 3,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.873849764603411
+      },
+      {
+        "rank": 4,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.86083697443229
+      },
+      {
+        "rank": 5,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.788949037915588
+      },
+      {
+        "rank": 6,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.824438165161721
+      },
+      {
+        "rank": 7,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.785349049803797
+      },
+      {
+        "rank": 8,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.769867360591888
+      },
+      {
+        "rank": 9,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.769154741218405
+      },
+      {
+        "rank": 10,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.767792366975319
+      },
+      {
+        "rank": 11,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.727475068791958
+      },
+      {
+        "rank": 12,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.752644419670105
+      },
+      {
+        "rank": 13,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.70668716986852
+      },
+      {
+        "rank": 14,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.76650550764734
+      },
+      {
+        "rank": 15,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.748192429542542
+      },
+      {
+        "rank": 16,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.743582756092225
+      },
+      {
+        "rank": 17,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.733194724726993
+      },
+      {
+        "rank": 18,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.72249881759279
+      }
+    ]
+  },
+  {
+    "id": "D02",
+    "category": "direct_fact",
+    "question": "Berapa pagu anggaran untuk pelatihan digital?",
+    "answerable": true,
+    "gold_pages": [
+      5
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.825113236904144
+      },
+      {
+        "rank": 2,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.804165803889542
+      },
+      {
+        "rank": 3,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.799905908113367
+      },
+      {
+        "rank": 4,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.785606431103137
+      },
+      {
+        "rank": 5,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.774086025466206
+      },
+      {
+        "rank": 6,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.813027465731724
+      },
+      {
+        "rank": 7,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.786047458648682
+      },
+      {
+        "rank": 8,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.785289657992742
+      },
+      {
+        "rank": 9,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.777348564705168
+      },
+      {
+        "rank": 10,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.775342372019014
+      },
+      {
+        "rank": 11,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.769127323083442
+      },
+      {
+        "rank": 12,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.767462537733469
+      },
+      {
+        "rank": 13,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.740797625637491
+      },
+      {
+        "rank": 14,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.728072957511369
+      },
+      {
+        "rank": 15,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.763402654921852
+      }
+    ]
+  },
+  {
+    "id": "D03",
+    "category": "direct_fact",
+    "question": "Berapa besar dana cadangan program?",
+    "answerable": true,
+    "gold_pages": [
+      5
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.828108707440943
+      },
+      {
+        "rank": 2,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.818850376468948
+      },
+      {
+        "rank": 3,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.741837947587727
+      },
+      {
+        "rank": 4,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.786934018135093
+      },
+      {
+        "rank": 5,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.782400369644187
+      },
+      {
+        "rank": 6,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.77899526232454
+      },
+      {
+        "rank": 7,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.775788724422477
+      },
+      {
+        "rank": 8,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.773124713860402
+      },
+      {
+        "rank": 9,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.770939694102997
+      },
+      {
+        "rank": 10,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.765429913997672
+      },
+      {
+        "rank": 11,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.759356872920432
+      },
+      {
+        "rank": 12,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.756282851474467
+      },
+      {
+        "rank": 13,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.747758976781219
+      },
+      {
+        "rank": 14,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.746978491184537
+      },
+      {
+        "rank": 15,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.737127736978102
+      },
+      {
+        "rank": 16,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.754085616007857
+      },
+      {
+        "rank": 17,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.715488118856449
+      },
+      {
+        "rank": 18,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.759013235569022
+      },
+      {
+        "rank": 19,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.757497006281767
+      },
+      {
+        "rank": 20,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.742557062367869
+      }
+    ]
+  },
+  {
+    "id": "D04",
+    "category": "direct_fact",
+    "question": "Pengeluaran di atas berapa rupiah yang memerlukan dua pemeriksa?",
+    "answerable": true,
+    "gold_pages": [
+      5,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.791161442856622
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.79095858335495
+      },
+      {
+        "rank": 3,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.779279602808977
+      },
+      {
+        "rank": 4,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.771864891052246
+      },
+      {
+        "rank": 5,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.77821358377378
+      },
+      {
+        "rank": 6,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.794594812071016
+      },
+      {
+        "rank": 7,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.794221008512859
+      },
+      {
+        "rank": 8,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.773450520819369
+      },
+      {
+        "rank": 9,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.772928086170192
+      },
+      {
+        "rank": 10,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.772382199764252
+      },
+      {
+        "rank": 11,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.772009565114406
+      },
+      {
+        "rank": 12,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.762368037559508
+      },
+      {
+        "rank": 13,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.755348756590561
+      },
+      {
+        "rank": 14,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.75004138797645
+      },
+      {
+        "rank": 15,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.731538284145912
+      },
+      {
+        "rank": 16,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.75726330280304
+      },
+      {
+        "rank": 17,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.763978884457285
+      },
+      {
+        "rank": 18,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.759951994416238
+      },
+      {
+        "rank": 19,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.752279266850906
+      },
+      {
+        "rank": 20,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.744209200834136
+      }
+    ]
+  },
+  {
+    "id": "D05",
+    "category": "direct_fact",
+    "question": "Kapan rencana kerja tahunan harus disetujui paling lambat?",
+    "answerable": true,
+    "gold_pages": [
+      6
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.824471932775519
+      },
+      {
+        "rank": 2,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.784231309821813
+      },
+      {
+        "rank": 3,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.78074246931935
+      },
+      {
+        "rank": 4,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.776761346635503
+      },
+      {
+        "rank": 5,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.771128039754396
+      },
+      {
+        "rank": 6,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.813351865603965
+      },
+      {
+        "rank": 7,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.799672699033148
+      },
+      {
+        "rank": 8,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.794911624517554
+      },
+      {
+        "rank": 9,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.773609957596079
+      },
+      {
+        "rank": 10,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.771594386411729
+      },
+      {
+        "rank": 11,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.753441273345649
+      },
+      {
+        "rank": 12,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.735318723841023
+      },
+      {
+        "rank": 13,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.768645671767534
+      },
+      {
+        "rank": 14,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.754569722840274
+      },
+      {
+        "rank": 15,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.752900369033179
+      },
+      {
+        "rank": 16,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.769249585956406
+      },
+      {
+        "rank": 17,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.767699150121335
+      },
+      {
+        "rank": 18,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.761062485981747
+      },
+      {
+        "rank": 19,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.759803621792383
+      },
+      {
+        "rank": 20,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.759655027430672
+      }
+    ]
+  },
+  {
+    "id": "D06",
+    "category": "direct_fact",
+    "question": "Kapan batas akhir penyerahan laporan akhir program?",
+    "answerable": true,
+    "gold_pages": [
+      6,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.787206151388977
+      },
+      {
+        "rank": 2,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.802529620521159
+      },
+      {
+        "rank": 3,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.802003121017853
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.789047909435767
+      },
+      {
+        "rank": 5,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.784589816517557
+      },
+      {
+        "rank": 6,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.808990143657911
+      },
+      {
+        "rank": 7,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.800959253196811
+      },
+      {
+        "rank": 8,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.797703373979718
+      },
+      {
+        "rank": 9,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.78504017858979
+      },
+      {
+        "rank": 10,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.783674861946724
+      },
+      {
+        "rank": 11,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.775942994597984
+      },
+      {
+        "rank": 12,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.772981294101092
+      },
+      {
+        "rank": 13,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.772708589384892
+      },
+      {
+        "rank": 14,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.764964920586661
+      },
+      {
+        "rank": 15,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.76454637684589
+      },
+      {
+        "rank": 16,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.754263817247434
+      },
+      {
+        "rank": 17,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.7813956998115
+      },
+      {
+        "rank": 18,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.781230144207443
+      },
+      {
+        "rank": 19,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.777643395802785
+      },
+      {
+        "rank": 20,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.772520078866489
+      }
+    ]
+  },
+  {
+    "id": "D07",
+    "category": "direct_fact",
+    "question": "Berapa jumlah maksimal peserta dalam satu kelas literasi digital?",
+    "answerable": true,
+    "gold_pages": [
+      7,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.862119341709733
+      },
+      {
+        "rank": 2,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.778875423736857
+      },
+      {
+        "rank": 3,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.767975500109011
+      },
+      {
+        "rank": 4,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.764499527603474
+      },
+      {
+        "rank": 5,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.802855205365718
+      },
+      {
+        "rank": 6,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.818792031515366
+      },
+      {
+        "rank": 7,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.795309019368362
+      },
+      {
+        "rank": 8,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.787907412551066
+      },
+      {
+        "rank": 9,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.777268734303869
+      },
+      {
+        "rank": 10,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.777056886133154
+      },
+      {
+        "rank": 11,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.773328954379808
+      },
+      {
+        "rank": 12,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.771476594033653
+      },
+      {
+        "rank": 13,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.754131494967581
+      },
+      {
+        "rank": 14,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.730465682689471
+      },
+      {
+        "rank": 15,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.727876560218551
+      },
+      {
+        "rank": 16,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.71624887794283
+      },
+      {
+        "rank": 17,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.741911770841653
+      },
+      {
+        "rank": 18,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.736436831396194
+      },
+      {
+        "rank": 19,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.722107970086346
+      },
+      {
+        "rank": 20,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.72073393093337
+      }
+    ]
+  },
+  {
+    "id": "D08",
+    "category": "direct_fact",
+    "question": "Berapa lama durasi setiap kelas literasi digital?",
+    "answerable": true,
+    "gold_pages": [
+      7,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.886294199670053
+      },
+      {
+        "rank": 2,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.81993460655213
+      },
+      {
+        "rank": 3,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.785800554907224
+      },
+      {
+        "rank": 4,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.785427391529089
+      },
+      {
+        "rank": 5,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.771645586792425
+      },
+      {
+        "rank": 6,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.821571564031498
+      },
+      {
+        "rank": 7,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.807771824863932
+      },
+      {
+        "rank": 8,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.801065981388098
+      },
+      {
+        "rank": 9,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.787497496977526
+      },
+      {
+        "rank": 10,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.782803157066736
+      },
+      {
+        "rank": 11,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.782337129116064
+      },
+      {
+        "rank": 12,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.781152797868682
+      },
+      {
+        "rank": 13,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.756962209109997
+      },
+      {
+        "rank": 14,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.755546747315711
+      },
+      {
+        "rank": 15,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.751850351360379
+      },
+      {
+        "rank": 16,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.738248260230033
+      },
+      {
+        "rank": 17,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.772266726684561
+      },
+      {
+        "rank": 18,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.769210829185795
+      },
+      {
+        "rank": 19,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.75151260188147
+      },
+      {
+        "rank": 20,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.74175107479096
+      }
+    ]
+  },
+  {
+    "id": "D09",
+    "category": "direct_fact",
+    "question": "Berapa usia minimum untuk mengikuti kelas literasi digital umum?",
+    "answerable": true,
+    "gold_pages": [
+      7,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.881054952018863
+      },
+      {
+        "rank": 2,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.801192855621663
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.793892562389379
+      },
+      {
+        "rank": 4,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.788347388702942
+      },
+      {
+        "rank": 5,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.781836986541754
+      },
+      {
+        "rank": 6,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.826524471446146
+      },
+      {
+        "rank": 7,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.808994174003607
+      },
+      {
+        "rank": 8,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.790599120223576
+      },
+      {
+        "rank": 9,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.787064052013637
+      },
+      {
+        "rank": 10,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.784972012043005
+      },
+      {
+        "rank": 11,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.782842257706717
+      },
+      {
+        "rank": 12,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.768935662102284
+      },
+      {
+        "rank": 13,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.750422179598294
+      },
+      {
+        "rank": 14,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.749074757099157
+      },
+      {
+        "rank": 15,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.744617850229996
+      },
+      {
+        "rank": 16,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.781708372729519
+      },
+      {
+        "rank": 17,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.772494654805425
+      },
+      {
+        "rank": 18,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.751636758349136
+      },
+      {
+        "rank": 19,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.748949304285688
+      },
+      {
+        "rank": 20,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.726905215935968
+      }
+    ]
+  },
+  {
+    "id": "D10",
+    "category": "direct_fact",
+    "question": "Apa alamat email program Kota Cakrawala?",
+    "answerable": true,
+    "gold_pages": [
+      12
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.849237367738079
+      },
+      {
+        "rank": 2,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.879370122106046
+      },
+      {
+        "rank": 3,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.868650623044348
+      },
+      {
+        "rank": 4,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.841537444316607
+      },
+      {
+        "rank": 5,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.835769742291617
+      },
+      {
+        "rank": 6,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.792010689734144
+      },
+      {
+        "rank": 7,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.785247100278921
+      },
+      {
+        "rank": 8,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.775999049663715
+      },
+      {
+        "rank": 9,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.771578146721247
+      },
+      {
+        "rank": 10,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.768753464519152
+      },
+      {
+        "rank": 11,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.766431387321618
+      },
+      {
+        "rank": 12,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.768407849263215
+      },
+      {
+        "rank": 13,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.76280903510832
+      },
+      {
+        "rank": 14,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.768196743453133
+      },
+      {
+        "rank": 15,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.767969658854345
+      },
+      {
+        "rank": 16,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.76658096711863
+      },
+      {
+        "rank": 17,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.75624599978376
+      },
+      {
+        "rank": 18,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.745870784171189
+      },
+      {
+        "rank": 19,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.74384041167258
+      }
+    ]
+  },
+  {
+    "id": "M01",
+    "category": "multi_fact",
+    "question": "Apa saja empat wilayah administratif yang tercakup dalam program?",
+    "answerable": true,
+    "gold_pages": [
+      2
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.825605732058112
+      },
+      {
+        "rank": 2,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.825228403495062
+      },
+      {
+        "rank": 3,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.816123041607791
+      },
+      {
+        "rank": 4,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.787069120335142
+      },
+      {
+        "rank": 5,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.778990533472242
+      },
+      {
+        "rank": 6,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.801325929085868
+      },
+      {
+        "rank": 7,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.793771912152311
+      },
+      {
+        "rank": 8,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.792257214515547
+      },
+      {
+        "rank": 9,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.79012490569802
+      },
+      {
+        "rank": 10,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.78454139416917
+      },
+      {
+        "rank": 11,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.782219389280191
+      },
+      {
+        "rank": 12,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.746640280890382
+      },
+      {
+        "rank": 13,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.779753234415866
+      },
+      {
+        "rank": 14,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.775518073110708
+      },
+      {
+        "rank": 15,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.766943138788379
+      },
+      {
+        "rank": 16,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.761752418122978
+      },
+      {
+        "rank": 17,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.761230281481428
+      },
+      {
+        "rank": 18,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.759799299287963
+      }
+    ]
+  },
+  {
+    "id": "M02",
+    "category": "multi_fact",
+    "question": "Sebutkan jam layanan reguler dan hari berlakunya.",
+    "answerable": true,
+    "gold_pages": [
+      2,
+      4
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.816074230202941
+      },
+      {
+        "rank": 2,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.821306130730398
+      },
+      {
+        "rank": 3,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.81774031029584
+      },
+      {
+        "rank": 4,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.80423359896145
+      },
+      {
+        "rank": 5,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.803591191768652
+      },
+      {
+        "rank": 6,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.811006616890049
+      },
+      {
+        "rank": 7,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.800721001689524
+      },
+      {
+        "rank": 8,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.7980135203592
+      },
+      {
+        "rank": 9,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.788285230193762
+      },
+      {
+        "rank": 10,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.784000992774969
+      },
+      {
+        "rank": 11,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.777704129609835
+      },
+      {
+        "rank": 12,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.779788566840389
+      },
+      {
+        "rank": 13,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.779219018174353
+      },
+      {
+        "rank": 14,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.771811173666191
+      },
+      {
+        "rank": 15,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.770300984382635
+      },
+      {
+        "rank": 16,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.770167204161549
+      },
+      {
+        "rank": 17,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.783755038232212
+      },
+      {
+        "rank": 18,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.777129265919836
+      },
+      {
+        "rank": 19,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.773469640405808
+      }
+    ]
+  },
+  {
+    "id": "M03",
+    "category": "multi_fact",
+    "question": "Apa saja empat modul kelas digital dan berapa durasi masing-masing?",
+    "answerable": true,
+    "gold_pages": [
+      7
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.846724152565008
+      },
+      {
+        "rank": 2,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.795080279717479
+      },
+      {
+        "rank": 3,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.814486064253576
+      },
+      {
+        "rank": 4,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.795651328174889
+      },
+      {
+        "rank": 5,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.795363819046476
+      },
+      {
+        "rank": 6,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.792796492576605
+      },
+      {
+        "rank": 7,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.785565946765655
+      },
+      {
+        "rank": 8,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.780485702724129
+      },
+      {
+        "rank": 9,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.78036190388431
+      },
+      {
+        "rank": 10,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.778603626572882
+      },
+      {
+        "rank": 11,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.768834517528685
+      },
+      {
+        "rank": 12,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.757360861144118
+      },
+      {
+        "rank": 13,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.745365694441468
+      },
+      {
+        "rank": 14,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.762497901916509
+      },
+      {
+        "rank": 15,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.747716576133204
+      },
+      {
+        "rank": 16,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.740466444547945
+      },
+      {
+        "rank": 17,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.735086798667913
+      }
+    ]
+  },
+  {
+    "id": "M04",
+    "category": "multi_fact",
+    "question": "Apa syarat nilai kelulusan internal kelas dan berapa soal yang dikerjakan setelah pelatihan?",
+    "answerable": true,
+    "gold_pages": [
+      7
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.807551954826364
+      },
+      {
+        "rank": 2,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.815848480710491
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.79140068343875
+      },
+      {
+        "rank": 4,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.784368804843711
+      },
+      {
+        "rank": 5,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.781103782390646
+      },
+      {
+        "rank": 6,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.807457708423417
+      },
+      {
+        "rank": 7,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.799683737783107
+      },
+      {
+        "rank": 8,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.794893789747921
+      },
+      {
+        "rank": 9,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.791975368982465
+      },
+      {
+        "rank": 10,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.779609633707438
+      },
+      {
+        "rank": 11,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.779495397896399
+      },
+      {
+        "rank": 12,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.765393267454725
+      },
+      {
+        "rank": 13,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.743341789840141
+      },
+      {
+        "rank": 14,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.775099946552531
+      },
+      {
+        "rank": 15,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.771446195668441
+      },
+      {
+        "rank": 16,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.762664823214438
+      }
+    ]
+  },
+  {
+    "id": "M05",
+    "category": "multi_fact",
+    "question": "Data peserta apa yang boleh dikumpulkan dan data apa yang tidak diperlukan untuk mengikuti kelas?",
+    "answerable": true,
+    "gold_pages": [
+      9
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.8538987127603
+      },
+      {
+        "rank": 2,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.77290280026778
+      },
+      {
+        "rank": 3,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.760010418889423
+      },
+      {
+        "rank": 4,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.82699055510817
+      },
+      {
+        "rank": 5,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.812529608600233
+      },
+      {
+        "rank": 6,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.848031564232875
+      },
+      {
+        "rank": 7,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.840380985691436
+      },
+      {
+        "rank": 8,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.812070809355883
+      },
+      {
+        "rank": 9,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.800924515558867
+      },
+      {
+        "rank": 10,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.798081446151389
+      },
+      {
+        "rank": 11,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.796846556945462
+      },
+      {
+        "rank": 12,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.791478407890904
+      },
+      {
+        "rank": 13,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.788738620952463
+      },
+      {
+        "rank": 14,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.76675670939524
+      },
+      {
+        "rank": 15,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.771420340880096
+      },
+      {
+        "rank": 16,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.784928956342528
+      },
+      {
+        "rank": 17,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.781969049816899
+      },
+      {
+        "rank": 18,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.776570227555015
+      },
+      {
+        "rank": 19,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.775930411836384
+      },
+      {
+        "rank": 20,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.773478488896165
+      }
+    ]
+  },
+  {
+    "id": "M06",
+    "category": "multi_fact",
+    "question": "Berapa lama data pendaftaran mentah disimpan dan apa yang dilakukan setelah masa retensi berakhir?",
+    "answerable": true,
+    "gold_pages": [
+      9,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.832268362085278
+      },
+      {
+        "rank": 2,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.800617969017703
+      },
+      {
+        "rank": 3,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.798899209532183
+      },
+      {
+        "rank": 4,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.780862162786323
+      },
+      {
+        "rank": 5,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.775391098170146
+      },
+      {
+        "rank": 6,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.801295197164441
+      },
+      {
+        "rank": 7,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.798615837055926
+      },
+      {
+        "rank": 8,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.785269151801096
+      },
+      {
+        "rank": 9,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.783379386369534
+      },
+      {
+        "rank": 10,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.781066712896036
+      },
+      {
+        "rank": 11,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.77563593460216
+      },
+      {
+        "rank": 12,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.772043522006798
+      },
+      {
+        "rank": 13,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.769345929979179
+      },
+      {
+        "rank": 14,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.767848633761672
+      },
+      {
+        "rank": 15,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.774735844888232
+      },
+      {
+        "rank": 16,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.771491977154254
+      },
+      {
+        "rank": 17,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.771431886298423
+      },
+      {
+        "rank": 18,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.76944298471001
+      },
+      {
+        "rank": 19,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.765809141570611
+      },
+      {
+        "rank": 20,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.749172679956657
+      }
+    ]
+  },
+  {
+    "id": "M07",
+    "category": "multi_fact",
+    "question": "Bagaimana respons awal untuk masalah P1 dan apa yang harus dilakukan sebelum perbaikan permanen?",
+    "answerable": true,
+    "gold_pages": [
+      8
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.854091798283625
+      },
+      {
+        "rank": 2,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.800170803049713
+      },
+      {
+        "rank": 3,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.790151763842851
+      },
+      {
+        "rank": 4,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.789377620368571
+      },
+      {
+        "rank": 5,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.783000184118749
+      },
+      {
+        "rank": 6,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.792508400826145
+      },
+      {
+        "rank": 7,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.786615801655317
+      },
+      {
+        "rank": 8,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.785070968564108
+      },
+      {
+        "rank": 9,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.782495477945423
+      },
+      {
+        "rank": 10,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.781900325673762
+      },
+      {
+        "rank": 11,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.776843739936141
+      },
+      {
+        "rank": 12,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.771852024837726
+      },
+      {
+        "rank": 13,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.770625857040189
+      },
+      {
+        "rank": 14,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.778796606350754
+      },
+      {
+        "rank": 15,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.773654322566811
+      },
+      {
+        "rank": 16,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.769019177345716
+      },
+      {
+        "rank": 17,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.778792255212723
+      },
+      {
+        "rank": 18,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.77002390980436
+      },
+      {
+        "rank": 19,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.768167835205586
+      },
+      {
+        "rank": 20,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.762965497263551
+      }
+    ]
+  },
+  {
+    "id": "M08",
+    "category": "multi_fact",
+    "question": "Bagaimana keluhan operasional yang belum selesai setelah dua hari kerja ditangani, dan bagaimana dugaan penyalahgunaan dana dieskalasikan?",
+    "answerable": true,
+    "gold_pages": [
+      3,
+      12
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.8448246717453
+      },
+      {
+        "rank": 2,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.864443556732714
+      },
+      {
+        "rank": 3,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.819278977003225
+      },
+      {
+        "rank": 4,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.822631478309631
+      },
+      {
+        "rank": 5,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.801955390093053
+      },
+      {
+        "rank": 6,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.807457435575572
+      },
+      {
+        "rank": 7,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.80600650274715
+      },
+      {
+        "rank": 8,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.804527794505169
+      },
+      {
+        "rank": 9,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.798226284875054
+      },
+      {
+        "rank": 10,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.796986591995563
+      },
+      {
+        "rank": 11,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.788120150566101
+      },
+      {
+        "rank": 12,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.772875355057441
+      },
+      {
+        "rank": 13,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.783517324433247
+      },
+      {
+        "rank": 14,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.778530763300108
+      },
+      {
+        "rank": 15,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.794781648957183
+      },
+      {
+        "rank": 16,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.793342257339691
+      },
+      {
+        "rank": 17,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.778132465108345
+      }
+    ]
+  },
+  {
+    "id": "U01",
+    "category": "unanswerable",
+    "question": "Berapa nomor telepon darurat internal Program Kota Cakrawala?",
+    "answerable": false,
+    "gold_pages": [
+      12,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.836627229753712
+      },
+      {
+        "rank": 2,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.863178108239845
+      },
+      {
+        "rank": 3,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.857479163628692
+      },
+      {
+        "rank": 4,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.827989245295213
+      },
+      {
+        "rank": 5,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.827843690748334
+      },
+      {
+        "rank": 6,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.80223478098823
+      },
+      {
+        "rank": 7,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.794095217301729
+      },
+      {
+        "rank": 8,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.784356987942564
+      },
+      {
+        "rank": 9,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.77608587670583
+      },
+      {
+        "rank": 10,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.773333737850229
+      },
+      {
+        "rank": 11,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.768256522171022
+      },
+      {
+        "rank": 12,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.765642262529084
+      },
+      {
+        "rank": 13,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.764884659488621
+      },
+      {
+        "rank": 14,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.768368743907482
+      },
+      {
+        "rank": 15,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.763288850082286
+      },
+      {
+        "rank": 16,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.754016727687924
+      },
+      {
+        "rank": 17,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.745912424610917
+      },
+      {
+        "rank": 18,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.744283802296266
+      }
+    ]
+  },
+  {
+    "id": "U02",
+    "category": "unanswerable",
+    "question": "Di mana alamat kantor pusat Program Kota Cakrawala?",
+    "answerable": false,
+    "gold_pages": [
+      12,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.821463648749477
+      },
+      {
+        "rank": 2,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.875628210416971
+      },
+      {
+        "rank": 3,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.861412184070113
+      },
+      {
+        "rank": 4,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.839552202331501
+      },
+      {
+        "rank": 5,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.830782871059693
+      },
+      {
+        "rank": 6,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.780782798388708
+      },
+      {
+        "rank": 7,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.77327313741768
+      },
+      {
+        "rank": 8,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.764098178119012
+      },
+      {
+        "rank": 9,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.758990390481295
+      },
+      {
+        "rank": 10,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.758947265461903
+      },
+      {
+        "rank": 11,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.743250506147593
+      },
+      {
+        "rank": 12,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.745825097711379
+      },
+      {
+        "rank": 13,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.754599808549932
+      },
+      {
+        "rank": 14,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.740634412689896
+      },
+      {
+        "rank": 15,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.731551456770052
+      },
+      {
+        "rank": 16,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.72640145921687
+      },
+      {
+        "rank": 17,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.714953456526603
+      }
+    ]
+  },
+  {
+    "id": "U03",
+    "category": "unanswerable",
+    "question": "Siapa nama lengkap pejabat nyata yang menjadi koordinator program?",
+    "answerable": false,
+    "gold_pages": [
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.803773903396856
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.77835739979998
+      },
+      {
+        "rank": 3,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.759116692700979
+      },
+      {
+        "rank": 4,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.738730656135562
+      },
+      {
+        "rank": 5,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.788046909091062
+      },
+      {
+        "rank": 6,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.806092083454138
+      },
+      {
+        "rank": 7,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.803765689653334
+      },
+      {
+        "rank": 8,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.801649903956074
+      },
+      {
+        "rank": 9,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.772196022010324
+      },
+      {
+        "rank": 10,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.768068089004274
+      },
+      {
+        "rank": 11,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.7651250186339
+      },
+      {
+        "rank": 12,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.762048602104192
+      },
+      {
+        "rank": 13,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.757236271234003
+      },
+      {
+        "rank": 14,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.749899663034094
+      },
+      {
+        "rank": 15,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.738647677342666
+      },
+      {
+        "rank": 16,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.731481687338253
+      },
+      {
+        "rank": 17,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.73136121479006
+      },
+      {
+        "rank": 18,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.709262405721855
+      },
+      {
+        "rank": 19,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.76056438684464
+      },
+      {
+        "rank": 20,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.760197520256048
+      }
+    ]
+  },
+  {
+    "id": "U04",
+    "category": "unanswerable",
+    "question": "Berapa total anggaran yang benar-benar telah dibelanjakan sampai akhir tahun 2025?",
+    "answerable": false,
+    "gold_pages": [
+      5,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.839761037855031
+      },
+      {
+        "rank": 2,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.806576000076294
+      },
+      {
+        "rank": 3,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.725968648320083
+      },
+      {
+        "rank": 4,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.78769736399973
+      },
+      {
+        "rank": 5,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.774793963171132
+      },
+      {
+        "rank": 6,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.775638455000292
+      },
+      {
+        "rank": 7,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.77323101045531
+      },
+      {
+        "rank": 8,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.767127569406612
+      },
+      {
+        "rank": 9,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.761310427032664
+      },
+      {
+        "rank": 10,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.760730817274415
+      },
+      {
+        "rank": 11,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.754314645353322
+      },
+      {
+        "rank": 12,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.733246916540251
+      },
+      {
+        "rank": 13,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.737993437649777
+      },
+      {
+        "rank": 14,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.727136124288538
+      },
+      {
+        "rank": 15,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.738288775784458
+      },
+      {
+        "rank": 16,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.745530248753965
+      },
+      {
+        "rank": 17,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.740967467965646
+      },
+      {
+        "rank": 18,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.728366331555478
+      }
+    ]
+  },
+  {
+    "id": "U05",
+    "category": "unanswerable",
+    "question": "Berapa hasil aktual keseluruhan program selama tahun 2025?",
+    "answerable": false,
+    "gold_pages": [
+      11,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.817721033624442
+      },
+      {
+        "rank": 2,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.805620599128045
+      },
+      {
+        "rank": 3,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.805213474605867
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.832668900489807
+      },
+      {
+        "rank": 5,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.80443043682394
+      },
+      {
+        "rank": 6,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.800450766032849
+      },
+      {
+        "rank": 7,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.797652316233379
+      },
+      {
+        "rank": 8,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.780099179732903
+      },
+      {
+        "rank": 9,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.776194989681244
+      },
+      {
+        "rank": 10,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.771203458309174
+      },
+      {
+        "rank": 11,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.737344070514684
+      },
+      {
+        "rank": 12,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.735757134430323
+      },
+      {
+        "rank": 13,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.766965343537014
+      },
+      {
+        "rank": 14,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.763023614883423
+      },
+      {
+        "rank": 15,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.760190799224926
+      },
+      {
+        "rank": 16,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.746918723538162
+      },
+      {
+        "rank": 17,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.739571169640353
+      }
+    ]
+  },
+  {
+    "id": "U06",
+    "category": "unanswerable",
+    "question": "Apa dasar hukum eksternal yang menjadi landasan program ini?",
+    "answerable": false,
+    "gold_pages": [
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.782863357747194
+      },
+      {
+        "rank": 2,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.789097168010981
+      },
+      {
+        "rank": 3,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.785094857215887
+      },
+      {
+        "rank": 4,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.793050969475392
+      },
+      {
+        "rank": 5,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.790052558177405
+      },
+      {
+        "rank": 6,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.78049927949906
+      },
+      {
+        "rank": 7,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.778582870960241
+      },
+      {
+        "rank": 8,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.774145795455827
+      },
+      {
+        "rank": 9,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.77341936109912
+      },
+      {
+        "rank": 10,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.769770457162235
+      },
+      {
+        "rank": 11,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.762566594771553
+      },
+      {
+        "rank": 12,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.742139043298001
+      },
+      {
+        "rank": 13,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.769452255466178
+      },
+      {
+        "rank": 14,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.769658831398626
+      },
+      {
+        "rank": 15,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.758218623452827
+      },
+      {
+        "rank": 16,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.752505876049227
+      },
+      {
+        "rank": 17,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.74433565139771
+      }
+    ]
+  },
+  {
+    "id": "T01",
+    "category": "ambiguity_trap",
+    "question": "Apakah seluruh pagu Rp480.000.000 sudah dibelanjakan?",
+    "answerable": false,
+    "gold_pages": [
+      5,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.804382347538197
+      },
+      {
+        "rank": 2,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.781361870440991
+      },
+      {
+        "rank": 3,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.76636295619343
+      },
+      {
+        "rank": 4,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.724687327500465
+      },
+      {
+        "rank": 5,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.767517383690504
+      },
+      {
+        "rank": 6,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.761437294140507
+      },
+      {
+        "rank": 7,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.759807660591158
+      },
+      {
+        "rank": 8,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.755074127601244
+      },
+      {
+        "rank": 9,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.753660052578448
+      },
+      {
+        "rank": 10,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.752892642868448
+      },
+      {
+        "rank": 11,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.752139881125708
+      },
+      {
+        "rank": 12,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.739369862732014
+      },
+      {
+        "rank": 13,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.73850189354982
+      },
+      {
+        "rank": 14,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.729795596064451
+      },
+      {
+        "rank": 15,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.746293247629822
+      },
+      {
+        "rank": 16,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.746875599212921
+      },
+      {
+        "rank": 17,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.746225506517236
+      },
+      {
+        "rank": 18,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.737566784765328
+      }
+    ]
+  },
+  {
+    "id": "T02",
+    "category": "ambiguity_trap",
+    "question": "Apakah data simulasi membuktikan wilayah tertentu memiliki hasil program terbaik?",
+    "answerable": false,
+    "gold_pages": [
+      11
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.802444385899452
+      },
+      {
+        "rank": 2,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.794766140296106
+      },
+      {
+        "rank": 3,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.799686122015447
+      },
+      {
+        "rank": 4,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.783793070830155
+      },
+      {
+        "rank": 5,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.769767788676293
+      },
+      {
+        "rank": 6,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.811185144044746
+      },
+      {
+        "rank": 7,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.79764498486252
+      },
+      {
+        "rank": 8,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.784903445559125
+      },
+      {
+        "rank": 9,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.784058881756146
+      },
+      {
+        "rank": 10,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.774425377748136
+      },
+      {
+        "rank": 11,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.77006035564891
+      },
+      {
+        "rank": 12,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.767370251730656
+      },
+      {
+        "rank": 13,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.739545244114029
+      },
+      {
+        "rank": 14,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.76761592819597
+      },
+      {
+        "rank": 15,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.743544810097392
+      }
+    ]
+  },
+  {
+    "id": "T03",
+    "category": "ambiguity_trap",
+    "question": "Apakah peserta berusia 16 tahun boleh mengikuti kelas umum tanpa izin wali?",
+    "answerable": true,
+    "gold_pages": [
+      7,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.798833286970864
+      },
+      {
+        "rank": 2,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.797531795648838
+      },
+      {
+        "rank": 3,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.787738195004894
+      },
+      {
+        "rank": 4,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.766156806578839
+      },
+      {
+        "rank": 5,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.762389583160357
+      },
+      {
+        "rank": 6,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.822746084086956
+      },
+      {
+        "rank": 7,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.801270210591535
+      },
+      {
+        "rank": 8,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.796038580176928
+      },
+      {
+        "rank": 9,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.793781985334877
+      },
+      {
+        "rank": 10,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.782119883172532
+      },
+      {
+        "rank": 11,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.778382470156338
+      },
+      {
+        "rank": 12,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.777630415245251
+      },
+      {
+        "rank": 13,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.767599954152122
+      },
+      {
+        "rank": 14,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.757638631429999
+      },
+      {
+        "rank": 15,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.761993464948305
+      },
+      {
+        "rank": 16,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.744083242391575
+      },
+      {
+        "rank": 17,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.742662579695876
+      },
+      {
+        "rank": 18,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.741158352883158
+      },
+      {
+        "rank": 19,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.766171840885664
+      },
+      {
+        "rank": 20,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.761129839218289
+      }
+    ]
+  },
+  {
+    "id": "T04",
+    "category": "ambiguity_trap",
+    "question": "Bolehkah relawan memperbaiki kabel listrik terbuka jika ingin mempercepat penanganan P1?",
+    "answerable": true,
+    "gold_pages": [
+      8
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.864881523556632
+      },
+      {
+        "rank": 2,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.792190300952812
+      },
+      {
+        "rank": 3,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.784511208534246
+      },
+      {
+        "rank": 4,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.768488081513415
+      },
+      {
+        "rank": 5,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.763941659692439
+      },
+      {
+        "rank": 6,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.79969451423818
+      },
+      {
+        "rank": 7,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.795917344336681
+      },
+      {
+        "rank": 8,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.79437360696478
+      },
+      {
+        "rank": 9,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.79418535180557
+      },
+      {
+        "rank": 10,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.789388011937262
+      },
+      {
+        "rank": 11,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.788905011946263
+      },
+      {
+        "rank": 12,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.788818836212164
+      },
+      {
+        "rank": 13,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.787385915206184
+      },
+      {
+        "rank": 14,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.779812190510296
+      },
+      {
+        "rank": 15,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.77493421881999
+      },
+      {
+        "rank": 16,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.77106392383576
+      },
+      {
+        "rank": 17,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.76017847535869
+      },
+      {
+        "rank": 18,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.775888933188395
+      },
+      {
+        "rank": 19,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.775488078594213
+      },
+      {
+        "rank": 20,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.764007852316372
+      }
+    ]
+  },
+  {
+    "id": "T05",
+    "category": "ambiguity_trap",
+    "question": "Apakah target kepuasan minimal 85% sudah tercapai untuk keseluruhan tahun 2025?",
+    "answerable": false,
+    "gold_pages": [
+      10,
+      11,
+      13
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.844084884050038
+      },
+      {
+        "rank": 2,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.788801576041993
+      },
+      {
+        "rank": 3,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.786906493490549
+      },
+      {
+        "rank": 4,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.797133564949036
+      },
+      {
+        "rank": 5,
+        "chunk_id": "235a3155-e884-4a4f-a34e-64d7ed873372",
+        "page_number": 13,
+        "chunk_index": 20,
+        "similarity": 0.790589476753541
+      },
+      {
+        "rank": 6,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.784891056113904
+      },
+      {
+        "rank": 7,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.780135896189708
+      },
+      {
+        "rank": 8,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.778187215328217
+      },
+      {
+        "rank": 9,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.775615526699096
+      },
+      {
+        "rank": 10,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.774132159455763
+      },
+      {
+        "rank": 11,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.75538717242403
+      },
+      {
+        "rank": 12,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.75659425517355
+      },
+      {
+        "rank": 13,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.754351540621852
+      },
+      {
+        "rank": 14,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.747588239538319
+      },
+      {
+        "rank": 15,
+        "chunk_id": "17b786ec-a835-4967-89a3-f7c3c831b070",
+        "page_number": 13,
+        "chunk_index": 21,
+        "similarity": 0.738164261688933
+      },
+      {
+        "rank": 16,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.771779642807225
+      },
+      {
+        "rank": 17,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.767530785055805
+      },
+      {
+        "rank": 18,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.762885272502899
+      }
+    ]
+  },
+  {
+    "id": "T06",
+    "category": "ambiguity_trap",
+    "question": "Apakah semua keluhan yang belum selesai dua hari kerja harus langsung dikirim kepada koordinator dan petugas evaluasi?",
+    "answerable": true,
+    "gold_pages": [
+      3,
+      12
+    ],
+    "results": [
+      {
+        "rank": 1,
+        "chunk_id": "d370c76e-64c3-4f4a-8e26-dcd54df8e573",
+        "page_number": 3,
+        "chunk_index": 5,
+        "similarity": 0.85799351740038
+      },
+      {
+        "rank": 2,
+        "chunk_id": "3e49538b-43ff-4648-8cee-35a9be18511b",
+        "page_number": 12,
+        "chunk_index": 18,
+        "similarity": 0.85046132201418
+      },
+      {
+        "rank": 3,
+        "chunk_id": "cf582b16-9a9c-453a-8f7a-275fdb1fc552",
+        "page_number": 8,
+        "chunk_index": 12,
+        "similarity": 0.824468892939355
+      },
+      {
+        "rank": 4,
+        "chunk_id": "3dfb6bca-77b8-40f8-b76e-5fc825659d93",
+        "page_number": 10,
+        "chunk_index": 15,
+        "similarity": 0.812049554701198
+      },
+      {
+        "rank": 5,
+        "chunk_id": "6c6ebafc-08b0-4695-866a-a27fdd4e4520",
+        "page_number": 4,
+        "chunk_index": 6,
+        "similarity": 0.807419967209116
+      },
+      {
+        "rank": 6,
+        "chunk_id": "957be640-3f3e-4f9b-a1a4-9301f0d6a0fb",
+        "page_number": 2,
+        "chunk_index": 3,
+        "similarity": 0.820672652641224
+      },
+      {
+        "rank": 7,
+        "chunk_id": "6f939b87-68a8-47e2-8e7d-0a259103b006",
+        "page_number": 9,
+        "chunk_index": 14,
+        "similarity": 0.817592095280178
+      },
+      {
+        "rank": 8,
+        "chunk_id": "4070a4ad-0aab-4a29-979e-f026321e3f92",
+        "page_number": 3,
+        "chunk_index": 4,
+        "similarity": 0.813963744527625
+      },
+      {
+        "rank": 9,
+        "chunk_id": "fb95f10b-b299-418f-8029-21bcec1d0629",
+        "page_number": 1,
+        "chunk_index": 0,
+        "similarity": 0.811867628359624
+      },
+      {
+        "rank": 10,
+        "chunk_id": "9b385789-89a0-4370-813f-f5f4f2a265d8",
+        "page_number": 6,
+        "chunk_index": 9,
+        "similarity": 0.811564181167333
+      },
+      {
+        "rank": 11,
+        "chunk_id": "05ea9e8e-7a9d-452d-83e2-13042b98477f",
+        "page_number": 11,
+        "chunk_index": 17,
+        "similarity": 0.805292391146142
+      },
+      {
+        "rank": 12,
+        "chunk_id": "e87eee7b-ddf7-4144-8dee-3bd9e75fb5dc",
+        "page_number": 12,
+        "chunk_index": 19,
+        "similarity": 0.80282342349785
+      },
+      {
+        "rank": 13,
+        "chunk_id": "2792fd4b-5aca-4d49-99fa-99d7e283d96f",
+        "page_number": 9,
+        "chunk_index": 13,
+        "similarity": 0.799796414387453
+      },
+      {
+        "rank": 14,
+        "chunk_id": "ce4233c6-7ed7-494d-927d-782ae911b6c2",
+        "page_number": 7,
+        "chunk_index": 11,
+        "similarity": 0.796746087268241
+      },
+      {
+        "rank": 15,
+        "chunk_id": "19066a81-0a2a-4e42-9866-dc67ff4bc2fa",
+        "page_number": 4,
+        "chunk_index": 7,
+        "similarity": 0.791237402745726
+      },
+      {
+        "rank": 16,
+        "chunk_id": "69fae847-a742-425c-ae41-60cc0c16ed32",
+        "page_number": 11,
+        "chunk_index": 16,
+        "similarity": 0.781561426744121
+      },
+      {
+        "rank": 17,
+        "chunk_id": "2d371028-2c49-4a7c-a7e8-70e669c884f9",
+        "page_number": 5,
+        "chunk_index": 8,
+        "similarity": 0.793748641759325
+      },
+      {
+        "rank": 18,
+        "chunk_id": "b5100a28-aa30-45f5-a886-d274309ca5b1",
+        "page_number": 2,
+        "chunk_index": 1,
+        "similarity": 0.79062121138067
+      },
+      {
+        "rank": 19,
+        "chunk_id": "369db89b-c9f1-4fb5-b62d-e4484b046b1f",
+        "page_number": 2,
+        "chunk_index": 2,
+        "similarity": 0.786704314547533
+      },
+      {
+        "rank": 20,
+        "chunk_id": "f8d5ead6-32c3-42b2-a8b1-28757fcb9142",
+        "page_number": 7,
+        "chunk_index": 10,
+        "similarity": 0.783994713307374
+      }
+    ]
+  }
+]

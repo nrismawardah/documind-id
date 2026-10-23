@@ -1,0 +1,31 @@
+﻿id,category,question,answerable,gold_pages,result_count,retrieved_pages,first_relevant_rank,hit_at_1,hit_at_3,hit_at_5,top_similarity
+D01,direct_fact,Berapa total pagu anggaran Program Kota Cakrawala tahun 2025?,True,"5,13",18,"1,5,2,2,13,3,12,12,6,10,4,2,13,3,11,11,7,9",2,0,1,1,0.831945488932999
+D02,direct_fact,Berapa pagu anggaran untuk pelatihan digital?,True,5,15,"5,13,7,2,2,4,2,6,4,3,1,7,12,13,3",1,1,1,1,0.825113236904144
+D03,direct_fact,Berapa besar dana cadangan program?,True,5,20,"5,2,12,3,13,3,2,2,1,11,9,6,4,11,12,4,13,8,10,9",1,1,1,1,0.828108707440943
+D04,direct_fact,Pengeluaran di atas berapa rupiah yang memerlukan dua pemeriksa?,True,"5,13",20,"13,5,3,12,10,9,3,11,8,11,1,6,13,4,12,2,9,7,4,2",1,1,1,1,0.791161442856622
+D05,direct_fact,Kapan rencana kerja tahunan harus disetujui paling lambat?,True,6,20,"6,13,10,3,5,3,2,8,12,12,7,13,9,11,4,4,7,11,9,2",1,1,1,1,0.824471932775519
+D06,direct_fact,Kapan batas akhir penyerahan laporan akhir program?,True,"6,13",20,"3,13,6,9,10,2,5,3,1,11,9,12,8,13,7,11,12,2,2,4",2,0,1,1,0.787206151388977
+D07,direct_fact,Berapa jumlah maksimal peserta dalam satu kelas literasi digital?,True,"7,13",20,"7,2,10,6,4,4,7,11,2,9,13,11,2,5,9,3,8,3,12,13",1,1,1,1,0.862119341709733
+D08,direct_fact,Berapa lama durasi setiap kelas literasi digital?,True,"7,13",20,"7,4,13,2,2,4,6,7,10,11,9,2,1,12,3,13,8,11,5,9",1,1,1,1,0.886294199670053
+D09,direct_fact,Berapa usia minimum untuk mengikuti kelas literasi digital umum?,True,"7,13",20,"7,13,9,6,2,4,4,11,10,7,11,8,12,9,13,2,2,5,12,3",1,1,1,1,0.881054952018863
+D10,direct_fact,Apa alamat email program Kota Cakrawala?,True,12,19,"12,2,2,1,3,12,4,6,9,8,13,2,3,7,4,5,11,7,9",1,1,1,1,0.849237367738079
+M01,multi_fact,Apa saja empat wilayah administratif yang tercakup dalam program?,True,2,18,"2,2,3,1,12,4,3,11,9,2,6,12,5,9,7,4,10,11",1,1,1,1,0.825605732058112
+M02,multi_fact,Sebutkan jam layanan reguler dan hari berlakunya.,True,"2,4",19,"4,12,2,12,6,8,10,3,7,3,4,13,11,5,7,2,9,9,11",1,1,1,1,0.816074230202941
+M03,multi_fact,Apa saja empat modul kelas digital dan berapa durasi masing-masing?,True,7,17,"7,2,4,4,7,6,9,2,8,13,2,5,3,1,12,9,13",1,1,1,1,0.846724152565008
+M04,multi_fact,Apa syarat nilai kelulusan internal kelas dan berapa soal yang dikerjakan setelah pelatihan?,True,7,16,"7,7,9,8,13,11,10,4,11,9,6,12,13,4,12,5",1,1,1,1,0.807551954826364
+M05,multi_fact,Data peserta apa yang boleh dikumpulkan dan data apa yang tidak diperlukan untuk mengikuti kelas?,True,9,20,"9,2,2,7,11,4,11,2,7,13,10,4,9,8,1,6,13,12,12,3",1,1,1,1,0.8538987127603
+M06,multi_fact,Berapa lama data pendaftaran mentah disimpan dan apa yang dilakukan setelah masa retensi berakhir?,True,"9,13",20,"9,13,8,12,4,10,6,2,11,7,11,9,12,13,3,4,7,5,3,2",1,1,1,1,0.832268362085278
+M07,multi_fact,Bagaimana respons awal untuk masalah P1 dan apa yang harus dilakukan sebelum perbaikan permanen?,True,8,20,"8,12,10,3,4,6,9,7,1,13,9,12,11,11,3,4,13,5,7,2",1,1,1,1,0.854091798283625
+M08,multi_fact,"Bagaimana keluhan operasional yang belum selesai setelah dua hari kerja ditangani, dan bagaimana dugaan penyalahgunaan dana dieskalasikan?",True,"3,12",17,"12,3,8,2,4,9,3,12,9,1,11,7,4,2,10,13,2",1,1,1,1,0.8448246717453
+U01,unanswerable,Berapa nomor telepon darurat internal Program Kota Cakrawala?,False,"12,13",18,"12,2,2,1,3,12,4,8,6,5,13,3,2,7,9,4,7,11",1,1,1,1,0.836627229753712
+U02,unanswerable,Di mana alamat kantor pusat Program Kota Cakrawala?,False,"12,13",17,"12,2,2,3,1,12,4,3,5,8,13,2,6,9,11,4,7",1,1,1,1,0.821463648749477
+U03,unanswerable,Siapa nama lengkap pejabat nyata yang menjadi koordinator program?,False,13,20,"3,5,13,11,2,2,3,2,1,12,8,9,6,10,4,11,12,13,4,9",3,0,1,1,0.803773903396856
+U04,unanswerable,Berapa total anggaran yang benar-benar telah dibelanjakan sampai akhir tahun 2025?,False,"5,13",18,"5,13,7,10,6,3,1,2,2,2,3,4,12,13,7,11,9,4",1,1,1,1,0.839761037855031
+U05,unanswerable,Berapa hasil aktual keseluruhan program selama tahun 2025?,False,"11,13",17,"10,2,2,5,1,13,6,11,11,2,9,4,3,12,7,12,13",6,0,0,0,0.817721033624442
+U06,unanswerable,Apa dasar hukum eksternal yang menjadi landasan program ini?,False,13,17,"13,2,2,1,3,9,9,2,8,5,13,12,3,6,4,10,7",1,1,1,1,0.782863357747194
+T01,ambiguity_trap,Apakah seluruh pagu Rp480.000.000 sudah dibelanjakan?,False,"5,13",18,"5,13,10,13,3,8,9,3,12,11,9,4,6,12,11,4,2,7",1,1,1,1,0.804382347538197
+T02,ambiguity_trap,Apakah data simulasi membuktikan wilayah tertentu memiliki hasil program terbaik?,False,11,15,"2,2,11,3,12,11,9,1,4,10,3,2,12,9,4",3,0,1,1,0.802444385899452
+T03,ambiguity_trap,Apakah peserta berusia 16 tahun boleh mengikuti kelas umum tanpa izin wali?,True,"7,13",20,"7,9,13,2,6,4,11,7,11,4,10,2,9,8,2,12,5,13,12,3",1,1,1,1,0.798833286970864
+T04,ambiguity_trap,Bolehkah relawan memperbaiki kabel listrik terbuka jika ingin mempercepat penanganan P1?,True,8,20,"8,12,3,2,2,7,3,4,4,10,2,6,9,9,11,1,12,11,7,5",1,1,1,1,0.864881523556632
+T05,ambiguity_trap,Apakah target kepuasan minimal 85% sudah tercapai untuk keseluruhan tahun 2025?,False,"10,11,13",18,"10,11,6,5,13,7,8,11,1,2,9,7,12,4,13,2,9,12",1,1,1,1,0.844084884050038
+T06,ambiguity_trap,Apakah semua keluhan yang belum selesai dua hari kerja harus langsung dikirim kepada koordinator dan petugas evaluasi?,True,"3,12",20,"3,12,8,10,4,2,9,3,1,6,11,12,9,7,4,11,5,2,2,7",1,1,1,1,0.85799351740038

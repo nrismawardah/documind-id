@@ -41,13 +41,13 @@ async def upload_document(
 
     if len(content) > MAX_PDF_SIZE:
         raise HTTPException(
-            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+            status_code=status.HTTP_413_CONTENT_TOO_LARGE,
             detail="PDF exceeds the 10 MB size limit",
         )
 
     if not content.startswith(b"%PDF-"):
         raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
             detail="File content is not a valid PDF signature",
         )
 

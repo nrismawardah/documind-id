@@ -1,0 +1,58 @@
+{
+  "total_questions": 30,
+  "all_questions": {
+    "questions": 30,
+    "hit_at_1": 0.8333,
+    "hit_at_3": 0.9667,
+    "hit_at_5": 0.9667,
+    "mrr": 0.8944
+  },
+  "answerable_questions": {
+    "questions": 21,
+    "hit_at_1": 0.9048,
+    "hit_at_3": 1.0,
+    "hit_at_5": 1.0,
+    "mrr": 0.9524
+  },
+  "unanswerable_questions": {
+    "questions": 9,
+    "hit_at_1": 0.6667,
+    "hit_at_3": 0.8889,
+    "hit_at_5": 0.8889,
+    "mrr": 0.7593
+  },
+  "by_category": {
+    "ambiguity_trap": {
+      "questions": 6,
+      "hit_at_1": 0.8333,
+      "hit_at_3": 1.0,
+      "hit_at_5": 1.0,
+      "mrr": 0.8889
+    },
+    "direct_fact": {
+      "questions": 10,
+      "hit_at_1": 0.8,
+      "hit_at_3": 1.0,
+      "hit_at_5": 1.0,
+      "mrr": 0.9
+    },
+    "multi_fact": {
+      "questions": 8,
+      "hit_at_1": 1.0,
+      "hit_at_3": 1.0,
+      "hit_at_5": 1.0,
+      "mrr": 1.0
+    },
+    "unanswerable": {
+      "questions": 6,
+      "hit_at_1": 0.6667,
+      "hit_at_3": 0.8333,
+      "hit_at_5": 0.8333,
+      "mrr": 0.75
+    }
+  },
+  "interpretation_note": "Metrik mengukur kecocokan halaman retrieval, bukan kebenaran jawaban LLM. Untuk pertanyaan unanswerable, kecocokan halaman tidak membuktikan bahwa jawaban tersedia di dokumen.",
+  "document_id": "1689dce4-0b8d-4afd-83cf-78d20c17d8da",
+  "match_count": 20,
+  "match_threshold": 0.0
+}
