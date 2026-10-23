@@ -100,3 +100,33 @@ def test_delete_document_requires_authentication():
     assert response.json() == {
         "detail": "Authentication required"
     }
+
+@patch("backend.app.api.documents.get_owned_document")
+def test_get_document_returns_404_when_not_owned(mock_get_document):
+    from fastapi import HTTPException
+
+    user_id = uuid4()
+    document_id = uuid4()
+
+    mock_get_document.side_effect = HTTPException(
+        status_code=404,
+        detail="Document not found",
+    )
+
+    app.dependency_overrides[get_current_user] = lambda: {
+        "sub": str(user_id),
+        "role": "authenticated",
+    }
+
+    try:
+        response = client.get(f"/documents/{document_id}")
+    finally:
+        app.dependency_overrides.pop(get_current_user, None)
+
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Document not found"
+
+    mock_get_document.assert_called_once_with(
+        document_id=document_id,
+        user_id=user_id,
+    )

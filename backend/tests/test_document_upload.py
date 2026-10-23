@@ -108,3 +108,45 @@ def test_upload_accepts_valid_pdf(mock_store):
     assert response.status_code == 201
     assert response.json()["filename"] == "contoh.pdf"
     mock_store.assert_called_once()
+
+@patch("backend.app.api.documents.store_document_pdf")
+def test_upload_rejects_pdf_exceeding_size_limit(mock_store):
+    setup_user()
+
+    try:
+        response = client.post(
+            "/documents",
+            files={
+                "file": (
+                    "besar.pdf",
+                    b"%PDF-1.7 " + b"A" * (10 * 1024 * 1024),
+                    "application/pdf",
+                )
+            },
+        )
+    finally:
+        teardown_user()
+
+    assert response.status_code == 413
+    mock_store.assert_not_called()
+
+@patch("backend.app.api.documents.store_document_pdf")
+def test_upload_rejects_invalid_content_type(mock_store):
+    setup_user()
+
+    try:
+        response = client.post(
+            "/documents",
+            files={
+                "file": (
+                    "contoh.pdf",
+                    b"%PDF-1.7 test",
+                    "text/plain",
+                )
+            },
+        )
+    finally:
+        teardown_user()
+
+    assert response.status_code == 415
+    mock_store.assert_not_called()

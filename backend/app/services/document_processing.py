@@ -110,14 +110,25 @@ def process_document(document_id: UUID, user_id: UUID) -> dict:
         }
 
     except HTTPException as exc:
-        if exc.status_code < 500:
+        if exc.status_code == 409:
+            # Preserve a state changed by another operation.
             raise
-        logger.exception("Document processing failed")
+
+        if exc.status_code < 500:
+            logger.warning(
+                "Document processing rejected: %s",
+                exc.detail,
+            )
+        else:
+            logger.exception("Document processing failed")
+
+        original_error = exc
 
     except Exception:
         logger.exception("Document processing failed")
+        original_error = None
 
-    # Do not overwrite a document that another operation is deleting.
+    # Mark failure only if the document is still being processed.
     try:
         (
             client.table("documents")
@@ -132,6 +143,9 @@ def process_document(document_id: UUID, user_id: UUID) -> dict:
         )
     except Exception:
         logger.exception("Failed to update document failure status")
+
+    if original_error is not None and original_error.status_code < 500:
+        raise original_error
 
     raise HTTPException(
         status_code=503,

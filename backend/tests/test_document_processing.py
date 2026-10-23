@@ -241,3 +241,88 @@ def test_process_document_chunk_save_failure(
         "status": "failed",
         "error_message": "Document processing failed",
     }
+
+@patch("backend.app.services.document_processing.chunk_pages")
+@patch("backend.app.services.document_processing.extract_pdf_text")
+@patch("backend.app.services.document_processing.get_supabase_client")
+@patch("backend.app.services.document_processing.get_owned_document")
+def test_process_document_empty_chunks(
+    mock_get_document,
+    mock_get_client,
+    mock_extract,
+    mock_chunk_pages,
+):
+    document_id = uuid4()
+    user_id = uuid4()
+
+    mock_get_document.return_value = {
+        "id": str(document_id),
+        "user_id": str(user_id),
+        "storage_path": f"{user_id}/test-document.pdf",
+    }
+
+    client = MagicMock()
+    mock_get_client.return_value = client
+    configure_document_updates(client)
+
+    client.storage.from_.return_value.download.return_value = b"%PDF-test"
+    mock_extract.return_value = {"page_count": 0, "pages": []}
+    mock_chunk_pages.return_value = []
+
+    with pytest.raises(HTTPException) as exc_info:
+        process_document(document_id, user_id)
+
+    assert exc_info.value.status_code == 422
+
+    updates = client.table.return_value.update.call_args_list
+    assert updates[-1].args[0]["status"] == "failed"
+
+@patch("backend.app.services.document_processing.save_document_chunks")
+@patch("backend.app.services.document_processing.generate_embeddings")
+@patch("backend.app.services.document_processing.chunk_pages")
+@patch("backend.app.services.document_processing.extract_pdf_text")
+@patch("backend.app.services.document_processing.get_supabase_client")
+@patch("backend.app.services.document_processing.get_owned_document")
+def test_process_document_zero_saved_chunks(
+    mock_get_document,
+    mock_get_client,
+    mock_extract,
+    mock_chunk_pages,
+    mock_generate_embeddings,
+    mock_save_chunks,
+):
+    document_id = uuid4()
+    user_id = uuid4()
+
+    mock_get_document.return_value = {
+        "id": str(document_id),
+        "user_id": str(user_id),
+        "storage_path": f"{user_id}/test-document.pdf",
+    }
+
+    client = MagicMock()
+    mock_get_client.return_value = client
+    configure_document_updates(client)
+
+    client.storage.from_.return_value.download.return_value = b"%PDF-test"
+    mock_extract.return_value = {
+        "page_count": 1,
+        "pages": [{"page_number": 1, "text": "Teks pengujian"}],
+    }
+    mock_chunk_pages.return_value = [
+        {
+            "chunk_index": 0,
+            "page_number": 1,
+            "content": "Teks pengujian",
+        }
+    ]
+    mock_generate_embeddings.return_value = [[0.1] * 768]
+    mock_save_chunks.return_value = 0
+
+    with pytest.raises(HTTPException) as exc_info:
+        process_document(document_id, user_id)
+
+    assert exc_info.value.status_code == 422
+
+    updates = client.table.return_value.update.call_args_list
+    assert updates[-1].args[0]["status"] == "failed"
