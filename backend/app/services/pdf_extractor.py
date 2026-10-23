@@ -1,4 +1,5 @@
-
+import os
+import shutil
 from io import BytesIO
 
 import pymupdf
@@ -7,11 +8,19 @@ from PIL import Image
 from pypdf import PdfReader
 
 
-# Lokasi Tesseract di Windows.
-# Tetapkan secara eksplisit agar aplikasi tidak bergantung pada PATH.
-pytesseract.pytesseract.tesseract_cmd = (
-    r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+# Gunakan path dari environment variable jika tersedia.
+# Jika tidak, cari Tesseract melalui PATH sistem.
+tesseract_path = (
+    os.getenv("TESSERACT_CMD")
+    or shutil.which("tesseract")
+    or (
+        r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+        if os.name == "nt"
+        else "tesseract"
+    )
 )
+
+pytesseract.pytesseract.tesseract_cmd = tesseract_path
 
 
 def extract_pdf_text(file_bytes: bytes) -> dict:
