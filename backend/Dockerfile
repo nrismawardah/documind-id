@@ -17,7 +17,13 @@ RUN apt-get update \
 
 COPY backend/requirements.txt ./requirements.txt
 
-RUN pip install --no-cache-dir -r requirements.txt
+# Install PyTorch CPU-only from the official PyTorch CPU index.
+RUN pip install --no-cache-dir torch==2.14.1+cpu \
+    --index-url https://download.pytorch.org/whl/cpu
+
+# Install the remaining application dependencies from PyPI.
+RUN pip install --no-cache-dir -r requirements.txt \
+    --extra-index-url https://download.pytorch.org/whl/cpu
 
 COPY backend/ ./backend/
 

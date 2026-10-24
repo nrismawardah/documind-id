@@ -11,3 +11,6 @@ google-genai
 pytesseract
 PyMuPDF
 Pillow
+sentence-transformers==6.1.0
+torch==2.14.1+cpu
+transformers==5.20.1
