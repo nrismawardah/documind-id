@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "DocuMind ID — Tanya Jawab Dokumen PDF",
   description:
     "Platform tanya jawab dokumen PDF dengan bantuan AI dan sitasi halaman sebagai sumber jawaban.",
+  verification: {
+    google: "MMZ_s4rEpvWaxbQJYogSYbltGrog2_j4w93XB_zzo5A",
+  },
 };
 
 export default function RootLayout({
