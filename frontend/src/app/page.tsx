@@ -1152,10 +1152,8 @@ export default function Home() {
           {nav.map((item) => (
             <button
               key={item.id}
-              className={`nav-item ${
-                view === item.id || (item.id === "profile" && profileOpen)
-                  ? "active"
-                  : ""
+              className={`nav-item ${view === item.id ? "active" : ""} ${
+                item.id === "profile" ? "nav-item-profile" : ""
               }`}
               onClick={() => {
                 if (item.id === "profile") {
@@ -1714,7 +1712,7 @@ export default function Home() {
               <div className="profile-sheet-handle" />
 
               <div className="profile-sheet-header">
-                <h2 id="profile-sheet-title">Profil Saya</h2>
+                <h2 id="profile-sheet-title">Profil</h2>
 
                 <button
                   className="icon-button"

@@ -2031,3 +2031,15 @@ a {
     padding-bottom: 20px;
   }
 }
+
+/* Sembunyikan menu Profil pada desktop */
+.nav-item-profile {
+  display: none;
+}
+
+/* Tampilkan kembali Profil pada mobile */
+@media (max-width: 768px) {
+  .nav-item-profile {
+    display: flex;
+  }
+}
