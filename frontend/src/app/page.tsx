@@ -42,6 +42,7 @@ import {
   Sparkles,
   Trash2,
   Upload,
+  UserRound,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -75,6 +76,7 @@ function Icon({ name, size = 20 }: { name: string; size?: number }) {
     spark: Sparkles,
     eye: Eye,
     eyeOff: EyeOff,
+    user: UserRound,
   };
   const LucideIcon = icons[name] ?? FileText;
   return <LucideIcon {...iconProps} />;
@@ -163,6 +165,7 @@ export default function Home() {
   const [chatError, setChatError] = useState("");
   const [chatLoadingHistory, setChatLoadingHistory] = useState(false);
   const [logoutLoading, setLogoutLoading] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
 
   const readyDocs = useMemo(
     () => documents.filter((d) => d.status === "ready"),
@@ -1102,10 +1105,15 @@ export default function Home() {
     );
   }
 
-  const nav: { id: View; label: string; icon: string }[] = [
+  const nav: {
+    id: "dashboard" | "search" | "chat" | "profile";
+    label: string;
+    icon: string;
+  }[] = [
     { id: "dashboard", label: "Dashboard", icon: "dashboard" },
     { id: "search", label: "Cari Dokumen", icon: "search" },
     { id: "chat", label: "Chat dengan AI", icon: "chat" },
+    { id: "profile", label: "Profil", icon: "user" },
   ];
   return (
     <main
@@ -1144,8 +1152,18 @@ export default function Home() {
           {nav.map((item) => (
             <button
               key={item.id}
-              className={`nav-item ${view === item.id ? "active" : ""}`}
-              onClick={() => setView(item.id)}
+              className={`nav-item ${
+                view === item.id || (item.id === "profile" && profileOpen)
+                  ? "active"
+                  : ""
+              }`}
+              onClick={() => {
+                if (item.id === "profile") {
+                  setProfileOpen(true);
+                } else {
+                  setView(item.id);
+                }
+              }}
               title={!sidebarOpen ? item.label : undefined}
             >
               <Icon name={item.icon} />
@@ -1544,7 +1562,6 @@ export default function Home() {
                           : "Pilih dokumen untuk memulai"}
                       </span>
                     </div>
-                    <span className="online-dot" title="Asisten siap" />
                   </div>
                   <div className="chat-messages">
                     {chatLoadingHistory ? (
@@ -1682,6 +1699,54 @@ export default function Home() {
             </>
           )}
         </div>
+        {profileOpen && (
+          <div
+            className="profile-overlay"
+            onClick={() => setProfileOpen(false)}
+          >
+            <section
+              className="profile-sheet"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="profile-sheet-title"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="profile-sheet-handle" />
+
+              <div className="profile-sheet-header">
+                <h2 id="profile-sheet-title">Profil Saya</h2>
+
+                <button
+                  className="icon-button"
+                  aria-label="Tutup menu akun"
+                  onClick={() => setProfileOpen(false)}
+                >
+                  <Icon name="close" />
+                </button>
+              </div>
+
+              <div className="profile-card">
+                <div className="profile-avatar">
+                  {userEmail.slice(0, 1).toUpperCase() || "U"}
+                </div>
+
+                <div className="profile-account-info">
+                  <h3>Akun saya</h3>
+                  <h2>{userEmail}</h2>
+                </div>
+              </div>
+
+              <button
+                className="button button-danger profile-logout"
+                onClick={() => void logout()}
+                disabled={logoutLoading}
+              >
+                <Icon name="logout" size={18} />
+                {logoutLoading ? "Keluar..." : "Logout"}
+              </button>
+            </section>
+          </div>
+        )}
       </section>
       {confirmDelete && (
         <div
